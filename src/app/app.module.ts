@@ -26,16 +26,22 @@ import { CalendarModule } from 'primeng/calendar';
 import { ChipsModule } from 'primeng/chips';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
-//import { DropdownModule } from 'primeng/dropdown';
-///import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DatosPersonaComponent } from './pages/home/datos-persona/datos-persona.component';
+import { DatosVehiculoComponent } from './pages/home/datos-vehiculo/datos-vehiculo.component';
+import { DatosCoberturaComponent } from './pages/home/datos-cobertura/datos-cobertura.component';
+import {KeyFilterModule} from 'primeng/keyfilter';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ComponentsComponent,
-    HomeComponent
+    HomeComponent,
+    DatosPersonaComponent,
+    DatosVehiculoComponent,
+    DatosCoberturaComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ChipsModule,
     InputMaskModule,
     InputNumberModule,
-    InputTextareaModule
+    InputTextareaModule,
+    InputMaskModule,
+    KeyFilterModule
 
     
   ],

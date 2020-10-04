@@ -1,0 +1,78 @@
+<div class="p-grid">
+    <div class="p-shadow-10 p-col">
+        <div class="p-grid">
+            <div class="p-col">
+
+                <label>DNI</label>
+                <br>
+                <p-inputNumber mode="decimal" inputId="withoutgrouping" [useGrouping]="false" minlength="7"
+                    maxlength="8" placeholder="Ingrese su DNI" required>
+                </p-inputNumber>
+
+            </div>
+
+            <div class="p-col">
+
+                <label>Apellido</label>
+                <br>
+                <input type="text" pInputText pKeyFilter="alpha" placeholder="Ingrese su apellido" minlength="2"
+                    maxlength="15">
+
+            </div>
+
+            <div class="p-col">
+                <label>Nombre</label>
+                <br>
+                <input type="text" pInputText pKeyFilter="alpha" minlength="2" maxlength="15" pInputText
+                    placeholder="Ingrese su nombre" required>
+
+
+            </div>
+
+            <div class="p-col">
+                <label>Email</label><br>
+                <input type="text" id="inputtext" pInputText placeholder="Ingrese su mail">
+
+            </div>
+
+            <div class="p-col">
+                <label>Celular</label><br>
+                <p-inputMask mask="(999) 999-9999"></p-inputMask>
+
+            </div>
+
+            <div class="p-col">
+                <label>Telefono</label><br>
+                <p-inputMask mask="(999) 999-9999"></p-inputMask>
+
+            </div>
+
+            <div class="p-col">
+                <label>Provincia</label><br>
+                <p-autoComplete [(ngModel)]="selectedProvincia" [suggestions]="filteredProvincias" (completeMethod)="filterProvincia($event)" field="nombre"></p-autoComplete>
+            </div>
+
+            <div class="p-col">
+                <label>Municipio</label><br>
+                <p-autoComplete [(ngModel)]="selectedMunicipio" [suggestions]="filteredMunicipios" (completeMethod)="filterMunicipio($event)" field="nombre"></p-autoComplete>
+            </div>
+
+            <div class="p-col">
+                <label>Fecha de nacimiento</label><br>
+                <p-inputMask inputId="inputmask" mask="99/99/9999"></p-inputMask>
+
+            </div>
+
+            <div class="p-col">
+                <label>Usuario</label><br>
+                <input minlength="3" maxlength="30" type="text" id="inputtext" pInputText required
+                    placeholder="Ingrese usuario">
+            </div>
+
+            <div class="p-col">
+                <label>Contraseña</label><br>
+                <input type="text" id="inputtext" pInputText required placeholder="Ingrese contraseña">
+            </div>
+        </div>
+    </div>
+</div>
