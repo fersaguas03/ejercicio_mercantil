@@ -1,19 +1,18 @@
 <form action="">
-
     <div class="p-grid">
        
         <div class="p-col-10 p-offset-1">
             <h2>Datos personales</h2>
             <hr>
             <br>
-            <app-datos-persona [provincias]='this.provincias' [municipios]="this.municipios"></app-datos-persona>
+            <app-datos-persona [provincias]='this.provincias' [municipios]="this.municipios"  (selectedNombreProvincia)="clickSelectedProvincia($event)"></app-datos-persona>
         </div>
 
         <div class="p-col-10 p-offset-1">
             <h2>Datos del vehículo</h2>
             <hr>
             <br>
-            <app-datos-vehiculo></app-datos-vehiculo>
+            <app-datos-vehiculo  [marcas]="this.marcas" (selectedCodMarca)="selectedCodMarcas($event)" [modelos]="this.modelos"></app-datos-vehiculo>
         </div>
 
         <div class="p-col-10 p-offset-1">

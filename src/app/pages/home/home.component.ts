@@ -1,9 +1,11 @@
-import { Component, OnInit, Version } from '@angular/core';
+import { Component, Input, OnInit, Version, ViewChild } from '@angular/core';
 import { Provincia } from 'src/app/model/provincia';
 import { Municipio } from 'src/app/model/municipio';
 import { MercantilService } from 'src/app/services/mercantil.service';
 import { Marca } from 'src/app/model/marca';
 import { Modelo } from 'src/app/model/modelo';
+import { ActivatedRoute } from '@angular/router';
+import { DatosVehiculoComponent } from './datos-vehiculo/datos-vehiculo.component';
 
 @Component({
   selector: 'app-home',
@@ -19,26 +21,21 @@ export class HomeComponent implements OnInit {
   marcas: Marca[];
   modelos: Modelo[];
   versiones: Version[];
-  nombreProvincia: string = "Mendoza";
- 
+  anioModelo: any = "Sin datos"
+  @ViewChild(DatosVehiculoComponent) datosVehiculoComponent: DatosVehiculoComponent;
 
-  constructor( public _mercantilService: MercantilService) {
+  constructor( public _mercantilService: MercantilService, private rutaActiva: ActivatedRoute) {
    
    }
 
   ngOnInit(): void {
+    this.municipios = [];
+    this.provincias = [];
+    this.marcas = [];
+   
     this.getProvinciaService();
-    this.getMunicipioService();
     this.getMarcasService();
-    // this.provincias = [
-    //   {
-    //     "id": "",
-    //     "nombre": ""
-    //   }
-    // ]
   }
-
-
 
   getProvinciaService(){
     this._mercantilService.getProvincias().subscribe( (res:any) =>{
@@ -47,22 +44,42 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getMunicipioService(){
-    this._mercantilService.getMunicipio( this.nombreProvincia ).subscribe( (res:any) =>{
-      this.municipios = res.municipios;
-      console.log(this.municipios);
-      
-    });
-  }
 
   getMarcasService(){
     this._mercantilService.getMarcas().subscribe( (res:any) =>{
       this.marcas = res;
-      console.log(this.marcas);
+     // console.log("marca: "+this.marcas);
       
     })
   }
 
+  ////////////// AUTOCOMPLETE MUNICIPIO //////////////
+  // Seleccion con click para la provincia
+  clickSelectedProvincia( nombre: string ){
+
+    this._mercantilService.getMunicipio( nombre ).subscribe( (res:any) =>{
+      this.municipios = res.municipios;
+      console.log( "output:" +this.municipios);
+      
+    })
+
+  }
+  ////////////// FIN AUTOCOMPLETE MUNICIPIO //////////////
+
+
+
+  obtengoAnio(e){
+    console.log(e);
+    this.anioModelo = e;
+  }
+
+  selectedCodMarcas( datos ){
+    this._mercantilService.getModelos( datos.marca, datos.anio ).subscribe( (res:any) =>{
+      this.modelos = res;
+      this.datosVehiculoComponent.obtenerModelo( this.modelos );
+      console.log("Modelo encontrado: " + this.modelos);
+    })
+  }
 
 
 

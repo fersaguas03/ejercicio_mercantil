@@ -31,6 +31,10 @@ import { DatosPersonaComponent } from './pages/home/datos-persona/datos-persona.
 import { DatosVehiculoComponent } from './pages/home/datos-vehiculo/datos-vehiculo.component';
 import { DatosCoberturaComponent } from './pages/home/datos-cobertura/datos-cobertura.component';
 import {KeyFilterModule} from 'primeng/keyfilter';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import { DropdownModule } from 'primeng/dropdown';
+import { MercantilService } from './services/mercantil.service';
 
 
 
@@ -62,11 +66,14 @@ import {KeyFilterModule} from 'primeng/keyfilter';
     InputNumberModule,
     InputTextareaModule,
     InputMaskModule,
-    KeyFilterModule
+    KeyFilterModule,
+    MessagesModule,
+    MessageModule,
+    DropdownModule
 
     
   ],
-  providers: [],
+  providers: [MercantilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

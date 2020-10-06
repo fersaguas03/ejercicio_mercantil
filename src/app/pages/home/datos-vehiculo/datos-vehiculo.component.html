@@ -1,33 +1,39 @@
 <div class="p-grid">
     <div class="p-shadow-10 p-col-12">
         <div class="p-grid ">
-          
-                <div class="p-col-6">
-                    <label for="inputtext">Marca</label><br>
-                    <input type="text" id="inputtext" pInputText required>
+            <!-- {{ this.modelos }} -->
+
+            <div class="p-col">
+                <label for="inputtext">Marca</label><br>
+                <p-autoComplete (onSelect)="clickSelectedMarca(selectedMarca.codigo)"
+                   [(ngModel)]="selectedMarca"
+                    [suggestions]="filteredMarcas" (completeMethod)="filterMarca($event)" field="desc"></p-autoComplete>
+                <p-message severity="error" text="Es obligatorio"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
+            </div>
+
+            <div class="p-col">
+                <label for="inputtext">Año</label><br>
+                <p-dropdown (onChange)="clickSelectedAnio(selectedAnios)" [options]="anios" [(ngModel)]="selectedAnios" placeholder="Seleccionar un año" [showClear]="true"></p-dropdown>
+                <p-message severity="error" text="Es obligatorio, ultimos 20 años"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
+            </div>
+
+            <div class="p-col" *ngIf="modelos !== []">
+                <label for="inputtext">Modelo</label><br>
+                <!-- <p-autoComplete [(ngModel)]="selectedModelos" [suggestions]="filteredModelos" (completeMethod)="filterModelo($event)"></p-autoComplete> -->
+                <!-- <input type="text" id="inputtext" pInputText required> -->
+                <!-- <p *ngIf="!this.mode"></p> -->
+                <p-dropdown [options]="modelosOptions" [(ngModel)]="modelos" placeholder="Selecciona Modelos"></p-dropdown>
+                <p-message severity="error" text="Es obligatorio"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
+            </div>
+
+            <div class="p-col" *ngIf="selectedModelo">
+                <label for="inputtext">Version</label><br>
+                <input type="text" id="inputtext" pInputText>
 
 
-
-                </div>
-                <div class="p-col-6">
-                    <label for="inputtext">Año</label><br>
-                    <input type="text" id="inputtext" pInputText required>
-                </div>
-
-
-
-
-                <div class="p-col-6">
-                    <label for="inputtext">Modelo</label><br>
-                    <input type="text" id="inputtext" pInputText required>
-
-                </div>
-
-                <div class="p-col-6">
-                    <label for="inputtext">Version</label><br>
-                    <input type="text" id="inputtext" pInputText>
-
-        
             </div>
         </div>
     </div>

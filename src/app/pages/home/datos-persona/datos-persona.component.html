@@ -1,14 +1,17 @@
 <div class="p-grid">
     <div class="p-shadow-10 p-col">
         <div class="p-grid">
+
             <div class="p-col">
 
                 <label>DNI</label>
                 <br>
                 <p-inputNumber mode="decimal" inputId="withoutgrouping" [useGrouping]="false" minlength="7"
-                    maxlength="8" placeholder="Ingrese su DNI" required>
+                    maxlength="8" placeholder="Ingrese su DNI" required class="ng-dirty ng-valid p-mr-1">
                 </p-inputNumber>
-
+                <!-- <p-message severity="error" text="El minimo es 7 y maximo 8 caracteres"></p-message> -->
+                <p-message severity="error" text="Es obligatorio"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
@@ -16,8 +19,10 @@
                 <label>Apellido</label>
                 <br>
                 <input type="text" pInputText pKeyFilter="alpha" placeholder="Ingrese su apellido" minlength="2"
-                    maxlength="15">
-
+                    maxlength="15" class="ng-dirty ng-valid p-mr-1">
+                <!-- <p-message severity="error" text="El minimo es 2 y maximo 15 caracteres"></p-message> -->
+                <p-message severity="error" text="Es obligatorio"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
@@ -25,54 +30,74 @@
                 <br>
                 <input type="text" pInputText pKeyFilter="alpha" minlength="2" maxlength="15" pInputText
                     placeholder="Ingrese su nombre" required>
-
+                <!-- <p-message severity="error" text="El minimo es 2 y maximo 15 caracteres"></p-message> -->
+                <p-message severity="error" text="Es obligatorio"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
 
             </div>
 
             <div class="p-col">
                 <label>Email</label><br>
                 <input type="text" id="inputtext" pInputText placeholder="Ingrese su mail">
-
+                <p-message severity="error" text="No es correcto el formato"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
                 <label>Celular</label><br>
-                <p-inputMask mask="(999) 999-9999"></p-inputMask>
-
+                <p-inputMask mask="(999) 999-9999" placeholder="Ingrese su celular"></p-inputMask>
+                <p-message severity="error" text="No es correcto el celular"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
-                <label>Telefono</label><br>
-                <p-inputMask mask="(999) 999-9999"></p-inputMask>
-
+                <label>Teléfono</label><br>
+                <p-inputMask mask="(999) 999-9999" placeholder="Ingrese su telefono"></p-inputMask>
+                <p-message severity="error" text="No es correcto el formato"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
                 <label>Provincia</label><br>
-                <p-autoComplete [(ngModel)]="selectedProvincia" [suggestions]="filteredProvincias" (completeMethod)="filterProvincia($event)" field="nombre"></p-autoComplete>
+                <p-autoComplete (keyup)="clickSelectedProvinciaEnter(selectedProvincia.nombre)"
+                    (focusout)="clickSelectedProvincia(selectedProvincia.nombre)" [(ngModel)]="selectedProvincia"
+                    [suggestions]="filteredProvincias" (completeMethod)="filterProvincia($event)" field="nombre"
+                    placeholder="Ingrese su provincia"></p-autoComplete>
+                <p-message severity="error" text="Es obligatorio"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
                 <label>Municipio</label><br>
-                <p-autoComplete [(ngModel)]="selectedMunicipio" [suggestions]="filteredMunicipios" (completeMethod)="filterMunicipio($event)" field="nombre"></p-autoComplete>
+                <p-autoComplete [(ngModel)]="selectedMunicipio" [suggestions]="filteredMunicipios"
+                    (completeMethod)="filterMunicipio($event)" field="nombre" placeholder="Ingrese su municipio">
+                </p-autoComplete>
+                <p-message severity="error" text="Es obligatorio"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
                 <label>Fecha de nacimiento</label><br>
-                <p-inputMask inputId="inputmask" mask="99/99/9999"></p-inputMask>
-
+                <p-inputMask inputId="inputmask" mask="99/99/9999" placeholder="Ingrese fecha de nacimiento"></p-inputMask>
+                <p-message severity="error" text="Tener entre 18 a 99 años"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
                 <label>Usuario</label><br>
                 <input minlength="3" maxlength="30" type="text" id="inputtext" pInputText required
                     placeholder="Ingrese usuario">
+                    <p-message severity="error" text="Tener minimo 3 a 30 caracteres"></p-message>
+                    <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
 
             <div class="p-col">
                 <label>Contraseña</label><br>
                 <input type="text" id="inputtext" pInputText required placeholder="Ingrese contraseña">
+                <p-message severity="error" text="Es obligatorio!"></p-message>
+                <p-message severity="success" text="¡Correcto!"></p-message>
             </div>
+
         </div>
     </div>
 </div>
