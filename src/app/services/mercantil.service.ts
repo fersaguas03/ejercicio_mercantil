@@ -1,15 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { Provincia } from '../model/provincia';
 import { Observable } from 'rxjs';
+import { Cobertura } from '../model/cobertura';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MercantilService {
-
 
   constructor(private http: HttpClient) {
 
@@ -34,6 +33,13 @@ export class MercantilService {
     const urlMunicipio = this.urlBaseAPIGeo + "/municipios?provincia=" +  nombreProvincia + "&campos=id,nombre&max=130";
     return this.http.get( urlMunicipio );
   }
+
+  // https://servicios.qamercantilandina.com.ar/api_mock_frontend/v1/usuarios?nombre=armando.socrates
+  getUsuario( nombre: string ){
+    const urlUsuario = this.urlBaseAPIMOCK + "/usuarios?nombre=" + nombre;
+    return this.http.get( urlUsuario );
+  }
+
 
 
   // https://servicios.qamercantilandina.com.ar/api/v1/vehiculos/marcas
@@ -60,6 +66,23 @@ export class MercantilService {
     const urlVersiones = this.urlBaseAPIMercantil + "/marcas/" + codigoMarca  + "/" + anio + "/" + modeloVehiculo;
     return this.http.get( urlVersiones );
   }
+
+
+  // https://servicios.qamercantilandina.com.ar/api_mock_frontend/v1/coberturas
+  getCoberturas(){
+    const urlCobertura = this.urlBaseAPIMOCK + "/coberturas";
+    return this.http.get<any>( urlCobertura ).toPromise()
+    .then(res => <Cobertura[]>res.data)
+    .then( data =>{ return data;});
+  }
+
+ 
+//   getProductsSmall() {
+//     return this.http.get<any>('assets/products-small.json')
+//     .toPromise()
+//     .then(res => <Product[]>res.data)
+//     .then(data => { return data; });
+// }
 
 
   

@@ -7,7 +7,7 @@
                 <label for="inputtext">Marca</label><br>
                 <p-autoComplete (onSelect)="clickSelectedMarca(selectedMarca.codigo)"
                    [(ngModel)]="selectedMarca"
-                    [suggestions]="filteredMarcas" (completeMethod)="filterMarca($event)" field="desc"></p-autoComplete>
+                    [suggestions]="filteredMarcas" (completeMethod)="filterMarca($event)" field="desc" placeholder="Seleccionar marca"></p-autoComplete>
                 <p-message severity="error" text="Es obligatorio"></p-message>
                 <p-message severity="success" text="¡Correcto!"></p-message>
             </div>

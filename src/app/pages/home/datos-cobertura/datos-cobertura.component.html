@@ -1,0 +1,36 @@
+<div class="card">
+    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedCobertura" dataKey="code">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Numero</th>
+                <th>Costo</th>
+                <th>Producto</th>
+                <th>Texto</th>
+                <th>Franquicia</th>
+                <th>CodigoProducto</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Puntaje</th>
+                <th>Granizo</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-cobertura>
+            <tr [pSelectableRow]="coberturas">
+                <!-- <td>{{product.code}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.quantity}}</td> -->
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+               <td>dasdasds</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

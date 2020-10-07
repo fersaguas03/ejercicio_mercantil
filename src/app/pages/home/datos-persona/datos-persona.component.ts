@@ -16,7 +16,9 @@ export class DatosPersonaComponent implements OnInit {
 
   @Input() public provincias: Provincia[];
   @Input() public municipios: Municipio[];
+  @Input() public usuario;
   @Output() public selectedNombreProvincia: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public usuarioInput = new EventEmitter();
 
 
 
@@ -25,6 +27,7 @@ export class DatosPersonaComponent implements OnInit {
   selectedMunicipio: any[];
   filteredMunicipios: any[];
   text: string;
+  nombreUsuarioModelo: string;
 
 
   constructor( private activatedRoute: ActivatedRoute ) { }
@@ -35,6 +38,17 @@ export class DatosPersonaComponent implements OnInit {
 
 
   }
+
+
+  onChangeUsuario( value ){
+
+    this.nombreUsuarioModelo = value;
+    console.log(this.nombreUsuarioModelo);
+    this.usuarioInput.emit( this.nombreUsuarioModelo )
+  }
+
+
+
 
   filterProvincia(event) {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
@@ -76,4 +90,6 @@ export class DatosPersonaComponent implements OnInit {
   }
 
 
+
+  
 }

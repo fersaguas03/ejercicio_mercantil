@@ -1,11 +1,10 @@
 <form action="">
     <div class="p-grid">
-       
         <div class="p-col-10 p-offset-1">
             <h2>Datos personales</h2>
             <hr>
             <br>
-            <app-datos-persona [provincias]='this.provincias' [municipios]="this.municipios"  (selectedNombreProvincia)="clickSelectedProvincia($event)"></app-datos-persona>
+            <app-datos-persona [provincias]='this.provincias' [municipios]="this.municipios"  (selectedNombreProvincia)="clickSelectedProvincia($event)" (usuarioInput)="usuarioOutput=$event" [usuario]="this.usuario"></app-datos-persona>
         </div>
 
         <div class="p-col-10 p-offset-1">
@@ -19,9 +18,9 @@
             <h2>Cobertura disponibles</h2>
             <hr>
             <br>
-            <app-datos-cobertura></app-datos-cobertura>
+            <app-datos-cobertura ></app-datos-cobertura>
         </div>
-
+        <!-- [coberturas]="this.coberturas" -->
         <button pButton type="submit" label="Confirmar"></button>
     </div>
 

@@ -34,6 +34,7 @@ import {KeyFilterModule} from 'primeng/keyfilter';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { DropdownModule } from 'primeng/dropdown';
+import {TableModule} from 'primeng/table';
 import { MercantilService } from './services/mercantil.service';
 
 
@@ -69,7 +70,8 @@ import { MercantilService } from './services/mercantil.service';
     KeyFilterModule,
     MessagesModule,
     MessageModule,
-    DropdownModule
+    DropdownModule,
+    TableModule
 
     
   ],
