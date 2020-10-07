@@ -19,6 +19,7 @@ import { Cobertura } from 'src/app/model/cobertura';
 })
 export class HomeComponent implements OnInit {
 
+  loading: boolean;
   checked: boolean;
   provincias: Provincia[];
   municipios: Municipio[];
@@ -32,28 +33,13 @@ export class HomeComponent implements OnInit {
   // coberturas: Cobertura[];
   @ViewChild(DatosVehiculoComponent) datosVehiculoComponent: DatosVehiculoComponent;
 
-  // coberturas: Cobertura[] = [];
-  // = [
-  //   {
-  //     numero: 0,
-  //     costo: 0,
-  //     producto: '',
-  //     texto: '',
-  //     franquicia: 0,
-  //     codigoProducto: 0,
-  //     titulo: '',
-  //     descripcion: '',
-  //     puntaje: 0,
-  //     granizo: false
-  //   }
-  // ]
-
 
   constructor(public _mercantilService: MercantilService, private rutaActiva: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.municipios = [];
     this.provincias = [];
     this.marcas = [];
@@ -72,6 +58,9 @@ export class HomeComponent implements OnInit {
   }
 
   getProvinciaService() {
+    setInterval(() => {
+      this.loading = false;
+    }, 5000);
     this._mercantilService.getProvincias().subscribe((res: any) => {
       this.provincias = res.provincias;
       console.log(this.provincias);
@@ -85,7 +74,7 @@ export class HomeComponent implements OnInit {
 
     this._mercantilService.getMunicipio(nombre).subscribe((res: any) => {
       this.municipios = res.municipios;
-      console.log("output:" + this.municipios);
+      // console.log("output:" , this.municipios);
 
     })
   }
@@ -96,7 +85,7 @@ export class HomeComponent implements OnInit {
     //  alert(this.usuarioOutput)
     this._mercantilService.getUsuario(this.usuarioOutput).subscribe((res: any) => {
       this.usuario = res;
-      console.log("llegue al servicio:" + this.usuario);
+      // console.log("llegue al servicio:" , this.usuario);
 
     })
 
@@ -115,7 +104,7 @@ export class HomeComponent implements OnInit {
     this._mercantilService.getModelos(datos.marca, datos.anio).subscribe((res: any) => {
       this.modelos = res;
       this.datosVehiculoComponent.obtenerModelo(this.modelos);
-      console.log("Modelo encontrado: " + this.modelos);
+      // console.log("Modelo encontrado: " , this.modelos);
     })
   }
 

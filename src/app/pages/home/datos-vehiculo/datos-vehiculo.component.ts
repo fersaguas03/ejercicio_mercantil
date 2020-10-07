@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, Version } from '@angular/core';
+import {  FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { Anios } from 'src/app/model/anios';
 import { Marca } from 'src/app/model/marca';
@@ -36,8 +37,9 @@ export class DatosVehiculoComponent implements OnInit {
 
   modelosOptions: any[] = [];
   modelo: string;
+  form:FormGroup;
 
-  constructor() {
+  constructor( private fb: FormBuilder ) {
     // this.modelo = [];
    
   }
@@ -49,6 +51,13 @@ export class DatosVehiculoComponent implements OnInit {
     for (let i = 2000; i < 2021; i++) {
         this.anios.push({label: i, value:i});
     }
+
+    this.form = this.fb.group({
+      'marcaForm': new FormControl('', Validators.required),
+      'anioForm': new FormControl('', Validators.required),
+      'modeloForm': new FormControl('', Validators.required),
+      'VersionForm': new FormControl('', Validators.required),
+    });
 
   }
 
@@ -98,6 +107,12 @@ export class DatosVehiculoComponent implements OnInit {
     for (let i = 0; i < modelos.length; i++) {
       this.modelosOptions.push({ label: modelos[i], value: modelos[i]});
     }
+  }
+
+  guardarDatosVehiculo(){
+    console.log(this.form.value);
+    console.log(this.form);
+    
   }
 
 }

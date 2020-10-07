@@ -39,6 +39,7 @@ import { MercantilService } from './services/mercantil.service';
 import { GranizoPipe } from './pipes/pipeCobertura.pipe';
 import { MessageService } from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 
@@ -80,7 +81,8 @@ import {ToastModule} from 'primeng/toast';
     MessageModule,
     DropdownModule,
     TableModule,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule
   ],
   providers: [MercantilService, MessageService],
   bootstrap: [AppComponent]

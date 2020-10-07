@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray, FormBuilder} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
@@ -31,6 +31,7 @@ export class DatosPersonaComponent implements OnInit {
   filteredMunicipios: any[];
   text: string;
   nombreUsuarioModelo: string;
+  confirmaDatosPersona: true;
 
 
   constructor( private activatedRoute: ActivatedRoute, private fb: FormBuilder ) { }
@@ -39,18 +40,19 @@ export class DatosPersonaComponent implements OnInit {
     this.provincias = [];
     this.municipios = [];
 
+
     this.form = this.fb.group({
-      'dni': new FormControl('', Validators.compose([Validators.required, Validators.min(7), Validators.max(8)])),
+      'dni': new FormControl('', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(8)])),
       'apellido': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
       'nombre': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
-      'email': new FormControl('', Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")),
+      'email': new FormControl('', [Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
       'celular': new FormControl('', Validators.compose([Validators.min(10), Validators.max(11)])),
-      'telefono': new FormControl('', Validators.compose([Validators.min(10), Validators.max(11)])),
+      'telefono': new FormControl('', Validators.compose([Validators.minLength(10), Validators.maxLength(11)])),
       'provincia': new FormControl('', Validators.required),
       'municipio': new FormControl('', Validators.required),
       'fechaNacimiento': new FormControl('', [Validators.required, fechaNacValidator]),
       'usuarios': new FormControl('', Validators.required),
-      'contrasenia': new FormControl('',Validators.compose([Validators.required, Validators.pattern("[A-Z] {1}, [a-z] {5}, [0-9]{2}")]))
+      'contrasenia': new FormControl('',Validators.compose([Validators.required, Validators.pattern("[A-Z]{1}[a-z]+[0-9]{2}")]))
     });
 
   }
@@ -105,6 +107,9 @@ export class DatosPersonaComponent implements OnInit {
     this.selectedNombreProvincia.emit( nombre );
   }
 
+  clickSiguiente(){
+    this.confirmaDatosPersona !== this.confirmaDatosPersona;
+  }
 
   guardarDatosPersona(){
     console.log(this.form.value);
