@@ -1,6 +1,6 @@
 //ANGULAR
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -51,12 +51,15 @@ import {ToastModule} from 'primeng/toast';
     DatosPersonaComponent,
     DatosVehiculoComponent,
     DatosCoberturaComponent,
+
+    //Pipes
     GranizoPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     //MODULOS PrimeNg
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -78,9 +81,6 @@ import {ToastModule} from 'primeng/toast';
     DropdownModule,
     TableModule,
     ToastModule
-    
-
-    
   ],
   providers: [MercantilService, MessageService],
   bootstrap: [AppComponent]
