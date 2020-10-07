@@ -7,7 +7,7 @@ import { MercantilService } from 'src/app/services/mercantil.service';
 @Component({
   selector: 'app-datos-cobertura',
   templateUrl: './datos-cobertura.component.html',
-  styleUrls: ['./datos-cobertura.component.css']
+  styleUrls: ['./datos-cobertura.component.scss']
 })
 export class DatosCoberturaComponent implements OnInit {
 

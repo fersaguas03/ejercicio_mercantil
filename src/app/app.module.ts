@@ -36,6 +36,8 @@ import {MessageModule} from 'primeng/message';
 import { DropdownModule } from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import { MercantilService } from './services/mercantil.service';
+import { GranizoPipe } from './pipes/pipeCobertura.pipe';
+
 
 
 
@@ -46,7 +48,8 @@ import { MercantilService } from './services/mercantil.service';
     HomeComponent,
     DatosPersonaComponent,
     DatosVehiculoComponent,
-    DatosCoberturaComponent
+    DatosCoberturaComponent,
+    GranizoPipe
   ],
   imports: [
     BrowserModule,

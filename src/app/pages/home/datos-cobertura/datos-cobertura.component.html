@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedCobertura">
+    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedCobertura"  class="p-datatable-responsive-demo">
         <ng-template pTemplate="header">
             <tr>
                 <th>Numero</th>
@@ -16,20 +16,16 @@
         </ng-template>
         <ng-template pTemplate="body" let-cobertura>
             <tr [pSelectableRow]="cobertura">
-                <!-- <td>{{product.code}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.category}}</td>
-                <td>{{product.quantity}}</td> -->
                <td>{{ cobertura.numero }}</td>
-               <td>{{ cobertura.costo }}</td>
+               <td>{{ cobertura.costo | currency:'ARS '}}</td>
                <td>{{ cobertura.producto }}</td>
                <td>{{ cobertura.texto }}</td>
                <td>{{ cobertura.franquicia }}</td>
                <td>{{ cobertura.codigoProducto }}</td>
                <td>{{ cobertura.titulo }}</td>
                <td>{{ cobertura.descripcion }}</td>
-               <td>{{ cobertura.puntaje }}</td>
-               <td>{{ cobertura.granizo }}</td>
+               <td>{{ cobertura.puntaje}}</td>
+               <td>{{ cobertura.granizo | pipeGranizo}}</td>
             </tr>
         </ng-template>
     </p-table>
