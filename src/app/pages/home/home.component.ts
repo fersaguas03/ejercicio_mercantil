@@ -58,9 +58,9 @@ export class HomeComponent implements OnInit {
   }
 
   getProvinciaService() {
-    setInterval(() => {
-      this.loading = false;
-    }, 5000);
+    // setInterval(() => {
+    //   this.loading = false;
+    // }, 3000);
     this._mercantilService.getProvincias().subscribe((res: any) => {
       this.provincias = res.provincias;
       console.log(this.provincias);
