@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   versiones: Version[];
   usuario: boolean;
   coberturas : Cobertura[];
+  coberturaSelect: Cobertura[];
   usuarioOutput: string = 'Silvia.Perez';
   // coberturas: Cobertura[];
   @ViewChild(DatosVehiculoComponent) datosVehiculoComponent: DatosVehiculoComponent;
@@ -129,39 +130,19 @@ export class HomeComponent implements OnInit {
   //   })
   // }
 
-  // getCoberturasService() {
-  //   this._mercantilService.getCoberturas().subscribe((res:any) => {
-      
-  //     this.coberturas = [
-  //       {
-  //         numero: res.numero,
-  //         costo: res.costo,
-  //         producto: res.producto,
-  //         texto: res.texto,
-  //         franquicia: res.franquicia,
-  //         codigoProducto: res.codigoProducto,
-  //         titulo: res.titulo,
-  //         descripcion: res.descripcion,
-  //         puntaje: res.puntaje,
-  //         granizo: res.granizo
-  //       }
-  //     ]
-  //     // this.coberturas = res;
-  //     console.log(this.coberturas);
-  //   })
-  // }
-
   
-  // getCoberturasService() {
-  //   this._mercantilService.getCoberturas().subscribe((res:any) => {
-      
-  //     this.coberturas = res;
-  //     // this.coberturas = res;
-  //     console.log(this.coberturas);
-  //   })
+  // coberturaSelected( coberturaSeleccionada:Cobertura[] ){
+
+  //   this.coberturas = coberturaSeleccionada;
+  //   console.log(this.coberturas);
+    
   // }
 
-
+  selectCobertura( event ){
+    this.coberturaSelect = event.titulo;
+    console.log("selecciono cobertura ",this.coberturaSelect);
+    
+  }
 
 
 

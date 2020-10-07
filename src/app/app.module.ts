@@ -37,6 +37,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import { MercantilService } from './services/mercantil.service';
 import { GranizoPipe } from './pipes/pipeCobertura.pipe';
+import { MessageService } from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
 
 
 
@@ -74,11 +76,13 @@ import { GranizoPipe } from './pipes/pipeCobertura.pipe';
     MessagesModule,
     MessageModule,
     DropdownModule,
-    TableModule
+    TableModule,
+    ToastModule
+    
 
     
   ],
-  providers: [MercantilService],
+  providers: [MercantilService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

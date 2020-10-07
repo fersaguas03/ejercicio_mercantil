@@ -1,5 +1,6 @@
 <div class="card">
-    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedCobertura"  class="p-datatable-responsive-demo">
+    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedProduct2"  (onRowSelect)="onRowSelectCobertura($event)" (onRowUnselect)="onRowUnselectCobertura($event)"
+        class="p-datatable-responsive-demo">
         <ng-template pTemplate="header">
             <tr>
                 <th>Numero</th>
@@ -7,7 +8,7 @@
                 <th>Producto</th>
                 <th>Texto</th>
                 <th>Franquicia</th>
-                <th>CodigoProducto</th>
+                <th>Cod. Producto</th>
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th>Puntaje</th>
@@ -16,16 +17,16 @@
         </ng-template>
         <ng-template pTemplate="body" let-cobertura>
             <tr [pSelectableRow]="cobertura">
-               <td>{{ cobertura.numero }}</td>
-               <td>{{ cobertura.costo | currency:'ARS '}}</td>
-               <td>{{ cobertura.producto }}</td>
-               <td>{{ cobertura.texto }}</td>
-               <td>{{ cobertura.franquicia }}</td>
-               <td>{{ cobertura.codigoProducto }}</td>
-               <td>{{ cobertura.titulo }}</td>
-               <td>{{ cobertura.descripcion }}</td>
-               <td>{{ cobertura.puntaje}}</td>
-               <td>{{ cobertura.granizo | pipeGranizo}}</td>
+                <td>{{ cobertura.numero }}</td>
+                <td>{{ cobertura.costo | currency:'ARS '}}</td>
+                <td>{{ cobertura.producto }}</td>
+                <td>{{ cobertura.texto }}</td>
+                <td>{{ cobertura.franquicia }}</td>
+                <td>{{ cobertura.codigoProducto }}</td>
+                <td>{{ cobertura.titulo }}</td>
+                <td>{{ cobertura.descripcion }}</td>
+                <td>{{ cobertura.puntaje}}</td>
+                <td>{{ cobertura.granizo | pipeGranizo}}</td>
             </tr>
         </ng-template>
     </p-table>

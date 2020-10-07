@@ -18,10 +18,13 @@
             <h2>Cobertura disponibles</h2>
             <hr>
             <br>
-            <app-datos-cobertura [coberturas]="this.coberturas"></app-datos-cobertura>
+            <app-datos-cobertura [coberturas]="this.coberturas" (selectedCobertura)="selectCobertura($event)"></app-datos-cobertura>
+            <!-- (coberturaSeleccionda)="coberturaSelected($event)" -->
+
+            <button pButton type="submit" label="Confirmar"></button>
         </div>
 
-        <button pButton type="submit" label="Confirmar"></button>
+      
     </div>
 
 

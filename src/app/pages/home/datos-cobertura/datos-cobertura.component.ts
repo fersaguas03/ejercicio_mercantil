@@ -1,67 +1,42 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import { Cobertura } from 'src/app/model/cobertura';
 // import { Cobertura } from 'src/app/model/cobertura';
 import { MercantilService } from 'src/app/services/mercantil.service';
+import {MessageService} from 'primeng/api';
 
 
 @Component({
   selector: 'app-datos-cobertura',
   templateUrl: './datos-cobertura.component.html',
-  styleUrls: ['./datos-cobertura.component.scss']
+  styleUrls: ['./datos-cobertura.component.scss'],
+  providers:[MessageService]
 })
 export class DatosCoberturaComponent implements OnInit {
 
   @Input() coberturas: Cobertura[];
-  selectedCobertura: string;
-
-  //  = [
-  //   {
-  //     numero: 0,
-  //     costo: 0,
-  //     producto: '',
-  //     texto: '',
-  //     franquicia: 0,
-  //     codigoProducto: 0,
-  //     titulo: '',
-  //     descripcion: '',
-  //     puntaje: 0,
-  //     granizo: false
-  //   }
-  // ];
-
-  
+  @Output() selectedCobertura: EventEmitter<Cobertura[]> = new EventEmitter<Cobertura[]>();
+  selectedProduct2: Cobertura;
 
 
-  // cobertura: Cobertura[];
-  // selectedCobertura: Cobertura;
 
-  // cargarCobertura: Cobertura = {
-  //   numero: 0,
-  //   costo: 0,
-  //   producto: '',
-  //   texto: '',
-  //   franquicia: 0,
-  //   codigoProducto: 0,
-  //   titulo: '',
-  //   descripcion: '',
-  //   puntaje: 0,
-  //   granizo: false
-  // };
-
-
-  constructor(private _mercantilService: MercantilService) {
+  constructor(private _mercantilService: MercantilService, public messageService: MessageService) {
 
   }
 
   ngOnInit(): void {
-
- 
-    
-    // console.log(this.cobertura);
-    //  this.coberturas = this._mercantilService.getCoberturas();
- 
-
     
   }
 
+
+  onRowSelectCobertura(event){
+    // alert(event.titulo)
+    this.messageService.add({ severity: 'success', summary: 'Cobertura Seleccionada', detail: event.titulo })
+    console.log(event.titulo);
+    this.selectedCobertura.emit(event);
+    
+  }
+
+  onRowUnselectCobertura(event){
+    this.messageService.add({ severity: 'info', summary: 'Cobertura fue quitada', detail: event.titulo })
+  }
 }
