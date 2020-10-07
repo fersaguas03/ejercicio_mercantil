@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedCobertura" dataKey="code">
+    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedCobertura">
         <ng-template pTemplate="header">
             <tr>
                 <th>Numero</th>
@@ -15,21 +15,21 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cobertura>
-            <tr [pSelectableRow]="coberturas">
+            <tr [pSelectableRow]="cobertura">
                 <!-- <td>{{product.code}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.category}}</td>
                 <td>{{product.quantity}}</td> -->
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
-               <td>dasdasds</td>
+               <td>{{ cobertura.numero }}</td>
+               <td>{{ cobertura.costo }}</td>
+               <td>{{ cobertura.producto }}</td>
+               <td>{{ cobertura.texto }}</td>
+               <td>{{ cobertura.franquicia }}</td>
+               <td>{{ cobertura.codigoProducto }}</td>
+               <td>{{ cobertura.titulo }}</td>
+               <td>{{ cobertura.descripcion }}</td>
+               <td>{{ cobertura.puntaje }}</td>
+               <td>{{ cobertura.granizo }}</td>
             </tr>
         </ng-template>
     </p-table>

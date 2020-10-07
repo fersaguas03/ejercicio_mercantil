@@ -70,10 +70,13 @@ export class MercantilService {
 
   // https://servicios.qamercantilandina.com.ar/api_mock_frontend/v1/coberturas
   getCoberturas(){
-    const urlCobertura = this.urlBaseAPIMOCK + "/coberturas";
+    let urlCobertura = this.urlBaseAPIMOCK + "/coberturas";
     return this.http.get<any>( urlCobertura ).toPromise()
-    .then(res => <Cobertura[]>res.data)
-    .then( data =>{ return data;});
+    .then(res => <Cobertura[]>res)
+    .then( data =>{ 
+      console.log("data service",data); 
+      return data; 
+    });
   }
 
  

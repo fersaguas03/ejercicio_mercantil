@@ -11,8 +11,9 @@ import { MercantilService } from 'src/app/services/mercantil.service';
 })
 export class DatosCoberturaComponent implements OnInit {
 
+  @Input() coberturas: Cobertura[];
   selectedCobertura: string;
-  public coberturas : Cobertura[];
+
   //  = [
   //   {
   //     numero: 0,
@@ -54,15 +55,11 @@ export class DatosCoberturaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+ 
     
     // console.log(this.cobertura);
     //  this.coberturas = this._mercantilService.getCoberturas();
-    this._mercantilService.getCoberturas().then((data:any) => {
-      
-      this.coberturas = data;
-      console.log("data ",data);
-    });
+ 
 
     
   }

@@ -9,6 +9,7 @@ import { DatosVehiculoComponent } from './datos-vehiculo/datos-vehiculo.componen
 // import { Cobertura } from 'src/app/model/cobertura';
 // import { Usuario } from 'src/app/model/usuario';
 import { BehaviorSubject } from 'rxjs';
+import { Cobertura } from 'src/app/model/cobertura';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
   modelos: Modelo[];
   versiones: Version[];
   usuario: boolean;
+  coberturas : Cobertura[];
   usuarioOutput: string = 'Silvia.Perez';
   // coberturas: Cobertura[];
   @ViewChild(DatosVehiculoComponent) datosVehiculoComponent: DatosVehiculoComponent;
@@ -60,6 +62,12 @@ export class HomeComponent implements OnInit {
     this.getMarcasService();
     // this.getCoberturasService();
     this.getUsuarioService();
+
+    this._mercantilService.getCoberturas().then((data:any) => {
+      this.coberturas = data;
+      console.log("data ",data);
+    });
+
   }
 
   getProvinciaService() {
