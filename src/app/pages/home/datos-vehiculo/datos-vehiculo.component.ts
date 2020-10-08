@@ -16,26 +16,30 @@ export class DatosVehiculoComponent implements OnInit {
 
   @Input() public marcas: Marca[];
   @Input() public modelos = [];
-  @Input() public versiones: Version[];
+  @Input() public versiones: [];
   @Output() selectedCodMarca = new EventEmitter();
   @Output() anioOutput = new EventEmitter();
+  @Output() seleccionModeloEmitido = new EventEmitter();
   selectedAnio = false;
   selectedModelo = false;
   anios: any[];
 
   selectedAnios: any;
+  seleccionModelos: any;
   marcaSeleccionada: string;
   anioSeleccionado: string;
 
 
+
   selectedMarca: Marca = { desc: '', codigo: '' };
   filteredMarcas: any[];
-  selectedModelos: Modelo[];
+  // selectedModelos: Modelo[];
   filteredModelos: any[];
 
   anioModelo: string;
 
   modelosOptions: any[] = [];
+  versionOptions: any[] = [];
   modelo: string;
   form:FormGroup;
 
@@ -55,8 +59,9 @@ export class DatosVehiculoComponent implements OnInit {
     this.form = this.fb.group({
       'marcaForm': new FormControl('', Validators.required),
       'anioForm': new FormControl('', Validators.required),
-      'modeloForm': new FormControl('', Validators.required),
-      'VersionForm': new FormControl('', Validators.required),
+      'modeloForm': new FormControl('', Validators.required)
+      // ,
+      // 'VersionForm': new FormControl('', Validators.required),
     });
 
   }
@@ -86,7 +91,7 @@ export class DatosVehiculoComponent implements OnInit {
 
   clickSelectedMarca(cod: string) {
     this.marcaSeleccionada = cod;
-
+    // alert(this.marcaSeleccionada)
     if( this.anioSeleccionado !== undefined ){
       this.selectedCodMarca.emit({marca: this.marcaSeleccionada, anio: this.anioSeleccionado});
     }
@@ -101,12 +106,33 @@ export class DatosVehiculoComponent implements OnInit {
   }
 
 
+  //MODELO
+  clickSelectedModelo( mod: string ){
+   
+     this.seleccionModelos = mod;
+
+    if( this.anioSeleccionado !== undefined && this.marcaSeleccionada !== undefined ){
+      this.seleccionModeloEmitido.emit( {marca: this.marcaSeleccionada, anio: this.anioSeleccionado, mod:this.seleccionModelos} );
+    }
+  }
+
+
   obtenerModelo( modelos ){
     console.log(modelos);
     
     for (let i = 0; i < modelos.length; i++) {
       this.modelosOptions.push({ label: modelos[i], value: modelos[i]});
     }
+  }
+
+  obtenerVersion( versiones ){
+    console.log(versiones);
+
+    versiones.forEach(element => {
+      this.versionOptions.push({ label : element.desc, value: element.codigo })
+    });
+
+
   }
 
   guardarDatosVehiculo(){

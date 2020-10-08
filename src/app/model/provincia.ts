@@ -1,7 +1,7 @@
 import { Municipio } from './municipio';
 
-export class Provincia{
-    public id: string;
-    public nombre: string
-    public municipioList: Municipio[];
+export interface Provincia{
+    id: string;
+    nombre: string
+    municipioList: Municipio[];
 }

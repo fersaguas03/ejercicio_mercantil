@@ -1,5 +1,5 @@
 import { Marca } from './marca';
 
-export class Modelo{
+export interface Modelo{
     marcaList: Marca[];
 }

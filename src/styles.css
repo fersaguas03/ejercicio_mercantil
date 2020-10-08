@@ -6,7 +6,7 @@ html, body{
 body{
     background-color: #fff;
 }
-h2, label{
+h1, h2, h3, h4,  label{
     font-family:arial;
 }
 

@@ -2,7 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators'
 import { Cobertura } from '../model/cobertura';
+import { Version } from '../model/version';
+
 
 
 @Injectable({
@@ -62,9 +65,10 @@ export class MercantilService {
 
   // https://servicios.qamercantilandina.com.ar/api/v1/vehiculos/marcas/32/2010/207
 
-  getVersiones( codigoMarca: string, anio: string, modeloVehiculo:string ): Observable<any>{
+  getVersiones( codigoMarca: string, anio: string, modeloVehiculo:string ): Observable<Version[]>{
     const urlVersiones = this.urlBaseAPIMercantil + "/marcas/" + codigoMarca  + "/" + anio + "/" + modeloVehiculo;
-    return this.http.get( urlVersiones );
+    return this.http.get( urlVersiones ).pipe( map( this.mapearVersiones, this ))
+
   }
 
 
@@ -79,15 +83,20 @@ export class MercantilService {
     });
   }
 
- 
-//   getProductsSmall() {
-//     return this.http.get<any>('assets/products-small.json')
-//     .toPromise()
-//     .then(res => <Product[]>res.data)
-//     .then(data => { return data; });
-// }
+  mapearVersiones( datos ){
+    console.log(datos);
+    
+    const versiones: Version[] = [];
+    datos.forEach(element => {
+      let version: Version = {
+        codigo: 0, desc: ''
+      };
+      version.codigo = element.codigo
+      version.desc = element.desc
+      versiones.push(version);
+    });
+    return versiones;
+  }
 
-
-  
 
 }

@@ -18,7 +18,8 @@ export class DatosPersonaComponent implements OnInit {
 
   @Input() public provincias: Provincia[];
   @Input() public municipios: Municipio[];
-  @Input() public usuario;
+  @Input() usuario : boolean;
+  // @Input() datosPersonale: DatoSpER
   @Output() public selectedNombreProvincia: EventEmitter<string> = new EventEmitter<string>();
   @Output() public usuarioInput = new EventEmitter();
 
@@ -31,7 +32,7 @@ export class DatosPersonaComponent implements OnInit {
   filteredMunicipios: any[];
   text: string;
   nombreUsuarioModelo: string;
-  confirmaDatosPersona: true;
+  confirmaDatosPersona: boolean;
 
 
   constructor( private activatedRoute: ActivatedRoute, private fb: FormBuilder ) { }
@@ -39,8 +40,7 @@ export class DatosPersonaComponent implements OnInit {
   ngOnInit(): void {
     this.provincias = [];
     this.municipios = [];
-
-
+    // this.datosPersonale.dni
     this.form = this.fb.group({
       'dni': new FormControl('', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(8)])),
       'apellido': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
@@ -108,7 +108,7 @@ export class DatosPersonaComponent implements OnInit {
   }
 
   clickSiguiente(){
-    this.confirmaDatosPersona !== this.confirmaDatosPersona;
+    // this.confirmaDatosPersona =+ this.confirmaDatosPersona;
   }
 
   guardarDatosPersona(){

@@ -26,11 +26,16 @@ export class HomeComponent implements OnInit {
   marcas: Marca[];
   modelos: Modelo[];
   versiones: Version[];
-  usuario: boolean;
+  usuario: boolean = false;
   coberturas : Cobertura[];
-  coberturaSelect: Cobertura[];
-  usuarioOutput: string = 'Silvia.Perez';
-  // coberturas: Cobertura[];
+  coberturaSelect: Cobertura;
+  // datosPersonales: DatosPersonales;
+  // datosVehiculo: DatosVehiculo;
+  confirmaPersona = true;
+  confirmaVehiculo = true;
+
+  usuarioOutput: string = '';
+
   @ViewChild(DatosVehiculoComponent) datosVehiculoComponent: DatosVehiculoComponent;
 
 
@@ -43,18 +48,24 @@ export class HomeComponent implements OnInit {
     this.municipios = [];
     this.provincias = [];
     this.marcas = [];
-    // this.usuarioOutput = [];
 
     this.getProvinciaService();
     this.getMarcasService();
     // this.getCoberturasService();
-    this.getUsuarioService();
 
     this._mercantilService.getCoberturas().then((data:any) => {
       this.coberturas = data;
       console.log("data ",data);
     });
 
+  }
+
+  confirmarDatosPersonales(){
+    this.confirmaPersona = !this.confirmaPersona;
+  }
+
+  confirmarDatosVehiculo(){
+    this.confirmaVehiculo = !this.confirmaVehiculo;
   }
 
   getProvinciaService() {
@@ -81,11 +92,12 @@ export class HomeComponent implements OnInit {
   ////////////// FIN AUTOCOMPLETE MUNICIPIO //////////////
 
 
-  getUsuarioService() {
-    //  alert(this.usuarioOutput)
-    this._mercantilService.getUsuario(this.usuarioOutput).subscribe((res: any) => {
+  usuarioDisponible( usuario ) {
+  
+    this._mercantilService.getUsuario(usuario).subscribe((res: any) => {
       this.usuario = res;
-      // console.log("llegue al servicio:" , this.usuario);
+      console.log("llegue al servicio:" , this.usuario);
+    
 
     })
 
@@ -101,6 +113,7 @@ export class HomeComponent implements OnInit {
 
   ////////MODELOS/////
   selectedCodMarcas(datos) {
+    // alert("datosMarca"+datos.marca)
     this._mercantilService.getModelos(datos.marca, datos.anio).subscribe((res: any) => {
       this.modelos = res;
       this.datosVehiculoComponent.obtenerModelo(this.modelos);
@@ -109,27 +122,23 @@ export class HomeComponent implements OnInit {
   }
 
   /////VERSIONES VER//////
-  // selectedNomModelos(datos) {
-  //   // alert(8)
-  //   this._mercantilService.getVersiones(datos.marca, datos.anio, datos.modelo).subscribe((res: any) => {
-  //     this.versiones = res;
-  //     this.datosVehiculoComponent.obtenerVersion(this.versiones);
-  //     console.log("Version encontrada: " + this.versiones);
+  seleccionModeloEmitidos(datos) {
+    // alert("marca "+datos.marca + "anio:"+ datos.anio + "modelo:"+ datos.mod)
+    this._mercantilService.getVersiones(datos.marca, datos.anio, datos.mod).subscribe((res: any) => {
+      console.log(res);
+      
+      this.versiones = res;
+      this.datosVehiculoComponent.obtenerVersion(this.versiones);
 
-  //   })
-  // }
+
+    })
+  }
 
   
-  // coberturaSelected( coberturaSeleccionada:Cobertura[] ){
-
-  //   this.coberturas = coberturaSeleccionada;
-  //   console.log(this.coberturas);
-    
-  // }
-
+  //// COBERTURAS
   selectCobertura( event ){
-    this.coberturaSelect = event.titulo;
-    console.log("selecciono cobertura ",this.coberturaSelect);
+    this.coberturaSelect = event;
+    console.log("selecciono cobertura home ",this.coberturaSelect);
     
   }
 

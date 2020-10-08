@@ -1,21 +1,47 @@
 <div>
     <!-- *ngIf="!loading" -->
     <div class="p-grid" class="animated fadeIn fast">
-        <div class="p-col-10 p-offset-1">
+
+        <div class="p-col-10 p-offset-1" *ngIf="confirmaPersona">
             <h2>Datos personales</h2>
             <hr>
             <br>
             <app-datos-persona [provincias]='this.provincias' [municipios]="this.municipios"
-                (selectedNombreProvincia)="clickSelectedProvincia($event)" (usuarioInput)="usuarioOutput=$event"
-                [usuario]="this.usuario"></app-datos-persona>
+                (selectedNombreProvincia)="clickSelectedProvincia($event)" (usuarioInput)="usuarioDisponible($event)"
+                [usuario]="usuario"></app-datos-persona>
+        </div>
+
+        <div class="p-col-10 p-offset-1" *ngIf="!confirmaPersona">
+            <br>
+            <h4> Se guardaron provisoriamente los datos personales</h4>
         </div>
 
         <div class="p-col-10 p-offset-1">
+            <div class="p-text-right">
+                <button pButton type="submit" label="Siguiente" (click)="confirmarDatosPersonales()"></button>
+            </div>
+        </div>
+
+
+
+        <div class="p-col-10 p-offset-1" *ngIf="confirmaVehiculo">
             <h2>Datos del vehículo</h2>
             <hr>
             <br>
             <app-datos-vehiculo [marcas]="this.marcas" (selectedCodMarca)="selectedCodMarcas($event)"
-                [modelos]="this.modelos"></app-datos-vehiculo>
+                [modelos]="this.modelos" (seleccionModeloEmitido)="seleccionModeloEmitidos($event)"
+                [versiones]="this.versiones"></app-datos-vehiculo>
+        </div>
+
+        <div class="p-col-10 p-offset-1" *ngIf="!confirmaVehiculo">
+            <br>
+            <h4> Se guardaron provisoriamente los datos del vehiculo</h4>
+        </div>
+
+        <div class="p-col-10 p-offset-1">
+            <div class="p-text-right">
+                <button pButton type="submit" label="Siguiente" (click)="confirmarDatosVehiculo()"></button>
+            </div>
         </div>
 
         <div class="p-col-10 p-offset-1">
@@ -27,6 +53,12 @@
             <!-- (coberturaSeleccionda)="coberturaSelected($event)" -->
 
         </div>
+
+        <div class="p-col-10 p-offset-1">
+            <app-mostrar-datos></app-mostrar-datos>
+        </div>
+
+
     </div>
 </div>
 <!-- <div *ngIf="loading" class="p-text-center animated fadeIn fast">

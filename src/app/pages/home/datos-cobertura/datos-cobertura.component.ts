@@ -19,7 +19,7 @@ export class DatosCoberturaComponent implements OnInit {
 
 
 
-  constructor(private _mercantilService: MercantilService, public messageService: MessageService) {
+  constructor(private _mercantilService: MercantilService, private messageService: MessageService) {
 
   }
 
@@ -29,10 +29,10 @@ export class DatosCoberturaComponent implements OnInit {
 
 
   onRowSelectCobertura(event){
-    // alert(event.titulo)
-    this.messageService.add({ severity: 'success', summary: 'Cobertura Seleccionada', detail: event.titulo })
-    console.log(event.titulo);
-    this.selectedCobertura.emit(event);
+     console.log(event.data)
+    this.messageService.add({ severity: 'success', summary: 'Cobertura Seleccionada', detail: event.data.titulo })
+    
+    this.selectedCobertura.emit(event.data);
     
   }
 

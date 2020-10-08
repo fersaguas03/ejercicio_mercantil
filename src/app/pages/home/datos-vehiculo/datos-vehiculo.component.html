@@ -42,7 +42,7 @@
                     <!-- <p-autoComplete [(ngModel)]="selectedModelos" [suggestions]="filteredModelos" (completeMethod)="filterModelo($event)"></p-autoComplete> -->
                     <!-- <input type="text" id="inputtext" pInputText required> -->
                     <!-- <p *ngIf="!this.mode"></p> -->
-                    <p-dropdown [options]="modelosOptions" [(ngModel)]="modelos" placeholder="Selecciona Modelos"
+                    <p-dropdown (onChange)="clickSelectedModelo(seleccionModelos)" [options]="modelosOptions" [(ngModel)]="seleccionModelos" placeholder="Selecciona Modelos"
                         formControlName="modeloForm">
                     </p-dropdown>
                     <!-- formControlName="modeloForm" -->
@@ -56,13 +56,12 @@
                     </div> -->
                 </div>
 
-                <div class="p-col" *ngIf="selectedModelo">
+                <div class="p-col" *ngIf="versiones !== []">
                     <label for="inputtext">Version</label><br>
-                    <p-dropdown [options]="modelosOptions" [(ngModel)]="modelos" placeholder="Selecciona Modelos"
-                        formControlName="versionForm">
+                    <p-dropdown [options]="versionOptions" [ngModelOptions]="{standalone: true}" [(ngModel)]="versiones" placeholder="Selecciona la Version"
+                     >
                         <!-- formControlName="versionForm" -->
                     </p-dropdown>
-                    <input type="text" id="inputtext" pInputText>
 
                     <!-- <div *ngIf="form.controls['versionForm'].errors && form.controls['versionForm'].dirty">
                         <p-message severity="error" text="La version es obligatoria"
@@ -75,9 +74,6 @@
 
 
                 </div>
-            </div>
-            <div class="p-text-right">
-                <button pButton type="submit" label="Siguiente"></button>
             </div>
         </form>
     </div>

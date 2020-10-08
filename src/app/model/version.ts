@@ -1,9 +1,7 @@
 import { Marca } from './marca';
 import { Modelo } from './modelo';
 
-export class Version{
+export interface Version{
     desc: string;
     codigo: number;
-    marca: Marca[];
-    modelo: Modelo[];
 }

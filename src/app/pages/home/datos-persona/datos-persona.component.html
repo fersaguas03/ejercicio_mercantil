@@ -8,7 +8,7 @@
                         <label>DNI</label>
                         <br>
                         <p-inputNumber mode="decimal" [useGrouping]="false" minlength="7" maxlength="8"
-                            placeholder="Ingrese su DNI" required class="ng-dirty ng-valid p-mr-1"
+                            prefix="" required class="ng-dirty ng-valid p-mr-1"
                             formControlName="dni">
                         </p-inputNumber>
                         <!-- VALIDACIONES -->
@@ -163,8 +163,9 @@
 
                     <div class="p-col">
                         <label>Usuario</label><br>
+                        {{ usuario }}
                         <input minlength="3" maxlength="30" type="text" pInputText required
-                            placeholder="Ingrese usuario" #usuario (focusout)="onChangeUsuario(usuario.value)"
+                            placeholder="Ingrese usuario" #usuarioss (keyup)="onChangeUsuario(usuarioss.value)"
                             [(ngModel)]="nombreUsuarioModelo" formControlName="usuarios">
 
                         <div *ngIf="form.controls['usuarios'].errors && form.controls['usuarios'].dirty">
@@ -193,9 +194,7 @@
 
                 </div>
             <!-- </div> -->
-            <div class="p-text-right">
-                <button pButton type="submit" label="Siguiente"></button>
-            </div>
+            <button pButton type="submit" label="dasdasd" (click)="guardarDatosPersona()"></button>
         </form>
     </div>
 </div>

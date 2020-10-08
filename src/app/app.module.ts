@@ -40,6 +40,7 @@ import { GranizoPipe } from './pipes/pipeCobertura.pipe';
 import { MessageService } from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { MostrarDatosComponent } from './pages/home/mostrar-datos/mostrar-datos.component';
 
 
 
@@ -54,7 +55,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     DatosCoberturaComponent,
 
     //Pipes
-    GranizoPipe
+    GranizoPipe,
+
+    MostrarDatosComponent
   ],
   imports: [
     BrowserModule,
