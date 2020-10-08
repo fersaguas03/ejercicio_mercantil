@@ -78,7 +78,7 @@ export class MercantilService {
     return this.http.get<any>( urlCobertura ).toPromise()
     .then(res => <Cobertura[]>res)
     .then( data =>{ 
-      console.log("data service",data); 
+      // console.log("data service",data); 
       return data; 
     });
   }

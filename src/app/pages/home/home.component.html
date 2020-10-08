@@ -1,26 +1,24 @@
-<div>
-    <!-- *ngIf="!loading" -->
-    <div class="p-grid" class="animated fadeIn fast">
+    <div class="p-grid" class="animated fadeIn fast" *ngIf="!loading">
 
         <div class="p-col-10 p-offset-1" *ngIf="confirmaPersona">
             <h2>Datos personales</h2>
             <hr>
             <br>
-            <app-datos-persona [provincias]='this.provincias' [municipios]="this.municipios"
+            <app-datos-persona [datosPersonass]="datosPersonass" [provincias]='this.provincias' [municipios]="this.municipios"
                 (selectedNombreProvincia)="clickSelectedProvincia($event)" (usuarioInput)="usuarioDisponible($event)"
-                [usuario]="usuario"></app-datos-persona>
+                [usuario]="usuario" (datosPersonaHijo)="datosPersonaHijos($event)"></app-datos-persona>
         </div>
 
-        <div class="p-col-10 p-offset-1" *ngIf="!confirmaPersona">
+        <!-- <div class="p-col-10 p-offset-1" *ngIf="!confirmaPersona">
             <br>
             <h4> Se guardaron provisoriamente los datos personales</h4>
-        </div>
+        </div> -->
 
-        <div class="p-col-10 p-offset-1">
+        <!-- <div class="p-col-10 p-offset-1">
             <div class="p-text-right">
                 <button pButton type="submit" label="Siguiente" (click)="confirmarDatosPersonales()"></button>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -55,14 +53,15 @@
         </div>
 
         <div class="p-col-10 p-offset-1">
-            <app-mostrar-datos></app-mostrar-datos>
+            <app-mostrar-datos [datosPersonaOtroComponente]="this.datosPersonaOtroComponente"></app-mostrar-datos>
         </div>
 
 
     </div>
-</div>
-<!-- <div *ngIf="loading" class="p-text-center animated fadeIn fast">
+
+    <div *ngIf="loading" class="p-text-center animated fadeIn fast">
     <div class="marginTop">
         <p-progressSpinner></p-progressSpinner>
     </div>
-</div> -->
+</div>
+

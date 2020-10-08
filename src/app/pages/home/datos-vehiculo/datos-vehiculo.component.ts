@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, Version } from '@angular/core';
-import {  FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { SelectItem } from 'primeng/api';
-import { Anios } from 'src/app/model/anios';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Marca } from 'src/app/model/marca';
-import { Modelo } from 'src/app/model/modelo';
+
 
 @Component({
   selector: 'app-datos-vehiculo',
@@ -20,6 +18,7 @@ export class DatosVehiculoComponent implements OnInit {
   @Output() selectedCodMarca = new EventEmitter();
   @Output() anioOutput = new EventEmitter();
   @Output() seleccionModeloEmitido = new EventEmitter();
+
   selectedAnio = false;
   selectedModelo = false;
   anios: any[];
@@ -28,8 +27,6 @@ export class DatosVehiculoComponent implements OnInit {
   seleccionModelos: any;
   marcaSeleccionada: string;
   anioSeleccionado: string;
-
-
 
   selectedMarca: Marca = { desc: '', codigo: '' };
   filteredMarcas: any[];
@@ -43,13 +40,9 @@ export class DatosVehiculoComponent implements OnInit {
   modelo: string;
   form:FormGroup;
 
-  constructor( private fb: FormBuilder ) {
-    // this.modelo = [];
-   
-  }
+  constructor( private fb: FormBuilder ) {}
 
   ngOnInit(): void {
-    
     this.marcas = [];
     this.anios = [];
     for (let i = 2000; i < 2021; i++) {
@@ -66,7 +59,7 @@ export class DatosVehiculoComponent implements OnInit {
 
   }
 
-  //////// AUTOCOMPLETE MARCA //////////////
+  //////// AUTOCOMPLETE MARCA ////////////
   filterMarca(event) {
     let filtered: any[] = [];
     let query = event.query;
@@ -80,14 +73,6 @@ export class DatosVehiculoComponent implements OnInit {
     console.log(this.filteredMarcas);
 
   }
-
-
-  /// Obtengo anio
-  mandarAnio(): void {
-    this.anioOutput.emit(this.anioModelo);
-  }
-
-
 
   clickSelectedMarca(cod: string) {
     this.marcaSeleccionada = cod;
@@ -108,9 +93,7 @@ export class DatosVehiculoComponent implements OnInit {
 
   //MODELO
   clickSelectedModelo( mod: string ){
-   
      this.seleccionModelos = mod;
-
     if( this.anioSeleccionado !== undefined && this.marcaSeleccionada !== undefined ){
       this.seleccionModeloEmitido.emit( {marca: this.marcaSeleccionada, anio: this.anioSeleccionado, mod:this.seleccionModelos} );
     }
@@ -119,11 +102,11 @@ export class DatosVehiculoComponent implements OnInit {
 
   obtenerModelo( modelos ){
     console.log(modelos);
-    
     for (let i = 0; i < modelos.length; i++) {
       this.modelosOptions.push({ label: modelos[i], value: modelos[i]});
     }
   }
+
 
   obtenerVersion( versiones ){
     console.log(versiones);
@@ -131,8 +114,6 @@ export class DatosVehiculoComponent implements OnInit {
     versiones.forEach(element => {
       this.versionOptions.push({ label : element.desc, value: element.codigo })
     });
-
-
   }
 
   guardarDatosVehiculo(){
@@ -140,5 +121,4 @@ export class DatosVehiculoComponent implements OnInit {
     console.log(this.form);
     
   }
-
 }

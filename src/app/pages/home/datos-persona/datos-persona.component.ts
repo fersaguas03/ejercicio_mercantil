@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
+import { DatosPersonas } from 'src/app/model/datosPersona';
 import { Municipio } from 'src/app/model/municipio';
 import { Provincia } from 'src/app/model/provincia';
 import { fechaNacValidator } from 'src/app/validators/fechaNac.validators';
@@ -19,20 +20,23 @@ export class DatosPersonaComponent implements OnInit {
   @Input() public provincias: Provincia[];
   @Input() public municipios: Municipio[];
   @Input() usuario : boolean;
+  @Input() datosPersonass: DatosPersonas;
   // @Input() datosPersonale: DatoSpER
   @Output() public selectedNombreProvincia: EventEmitter<string> = new EventEmitter<string>();
   @Output() public usuarioInput = new EventEmitter();
+  @Output() datosPersonaHijo: EventEmitter<DatosPersonas[]> = new EventEmitter<DatosPersonas[]>();
 
   form:FormGroup;
 
 
-  selectedProvincia: Provincia = { id: '', nombre: '', municipioList: []};
+  selectedProvincia: Provincia = { id: '', nombre: '' };
   filteredProvincias: any[];
   selectedMunicipio: any[];
   filteredMunicipios: any[];
   text: string;
   nombreUsuarioModelo: string;
   confirmaDatosPersona: boolean;
+  mostrarPersona: boolean = true;
 
 
   constructor( private activatedRoute: ActivatedRoute, private fb: FormBuilder ) { }
@@ -41,6 +45,7 @@ export class DatosPersonaComponent implements OnInit {
     this.provincias = [];
     this.municipios = [];
     // this.datosPersonale.dni
+    // this.datosPersonass.dni
     this.form = this.fb.group({
       'dni': new FormControl('', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(8)])),
       'apellido': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
@@ -66,10 +71,7 @@ export class DatosPersonaComponent implements OnInit {
   }
 
 
-
-
   filterProvincia(event) {
-    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
     let filtered: any[] = [];
     let query = event.query;
     for (let i = 0; i < this.provincias.length; i++) {
@@ -77,7 +79,6 @@ export class DatosPersonaComponent implements OnInit {
       if (provincia.nombre.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(provincia);
         console.log(provincia);
-        
       }
     }
     this.filteredProvincias = filtered;
@@ -85,7 +86,6 @@ export class DatosPersonaComponent implements OnInit {
   }
 
   filterMunicipio(event) {
-    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
     let filtered: any[] = [];
     let query = event.query;
     for (let i = 0; i < this.municipios.length; i++) {
@@ -96,7 +96,6 @@ export class DatosPersonaComponent implements OnInit {
     }
     this.filteredMunicipios = filtered;
     console.log(this.filteredMunicipios);
-    
   }
 
   clickSelectedProvincia( nombre: string){
@@ -112,9 +111,12 @@ export class DatosPersonaComponent implements OnInit {
   }
 
   guardarDatosPersona(){
-    console.log(this.form.value);
+
+    // console.log(this.form.value);
+    this.mostrarPersona = !this.mostrarPersona;
     console.log(this.form);
-    
+    this.datosPersonaHijo.emit(this.form.value);
+
   }
   
 }

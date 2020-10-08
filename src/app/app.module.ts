@@ -41,6 +41,8 @@ import { MessageService } from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { MostrarDatosComponent } from './pages/home/mostrar-datos/mostrar-datos.component';
+import {TooltipModule} from 'primeng/tooltip';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -85,7 +87,9 @@ import { MostrarDatosComponent } from './pages/home/mostrar-datos/mostrar-datos.
     DropdownModule,
     TableModule,
     ToastModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    TooltipModule,
+    DialogModule
   ],
   providers: [MercantilService, MessageService],
   bootstrap: [AppComponent]

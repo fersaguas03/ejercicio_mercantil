@@ -10,6 +10,7 @@ import { DatosVehiculoComponent } from './datos-vehiculo/datos-vehiculo.componen
 // import { Usuario } from 'src/app/model/usuario';
 import { BehaviorSubject } from 'rxjs';
 import { Cobertura } from 'src/app/model/cobertura';
+import { DatosPersonas } from 'src/app/model/datosPersona';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ import { Cobertura } from 'src/app/model/cobertura';
 })
 export class HomeComponent implements OnInit {
 
-  loading: boolean;
+  loading: boolean = true;
   checked: boolean;
   provincias: Provincia[];
   municipios: Municipio[];
@@ -27,8 +28,9 @@ export class HomeComponent implements OnInit {
   modelos: Modelo[];
   versiones: Version[];
   usuario: boolean = false;
-  coberturas : Cobertura[];
+  coberturas: Cobertura[];
   coberturaSelect: Cobertura;
+  datosPersonaOtroComponente: DatosPersonas;
   // datosPersonales: DatosPersonales;
   // datosVehiculo: DatosVehiculo;
   confirmaPersona = true;
@@ -39,42 +41,45 @@ export class HomeComponent implements OnInit {
   @ViewChild(DatosVehiculoComponent) datosVehiculoComponent: DatosVehiculoComponent;
 
 
-  constructor(public _mercantilService: MercantilService, private rutaActiva: ActivatedRoute) {
-
-  }
+  constructor(public _mercantilService: MercantilService, private rutaActiva: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.loading = true;
-    this.municipios = [];
-    this.provincias = [];
-    this.marcas = [];
 
-    this.getProvinciaService();
-    this.getMarcasService();
-    // this.getCoberturasService();
 
-    this._mercantilService.getCoberturas().then((data:any) => {
-      this.coberturas = data;
-      console.log("data ",data);
-    });
+    // setInterval(() => {
+
+      this.municipios = [];
+      this.provincias = [];
+      this.marcas = [];
+
+      this.getProvinciaService();
+      this.getMarcasService();
+      // this.getCoberturasService();
+
+      this._mercantilService.getCoberturas().then((data: any) => {
+        this.coberturas = data;
+        // console.log("data ", data);
+      });
+
+      this.loading = false;
+    // },);
+
+
 
   }
 
-  confirmarDatosPersonales(){
+  confirmarDatosPersonales() {
     this.confirmaPersona = !this.confirmaPersona;
   }
 
-  confirmarDatosVehiculo(){
+  confirmarDatosVehiculo() {
     this.confirmaVehiculo = !this.confirmaVehiculo;
   }
 
   getProvinciaService() {
-    // setInterval(() => {
-    //   this.loading = false;
-    // }, 3000);
     this._mercantilService.getProvincias().subscribe((res: any) => {
       this.provincias = res.provincias;
-      console.log(this.provincias);
+      // console.log(this.provincias);
     })
   }
 
@@ -92,12 +97,12 @@ export class HomeComponent implements OnInit {
   ////////////// FIN AUTOCOMPLETE MUNICIPIO //////////////
 
 
-  usuarioDisponible( usuario ) {
-  
+  usuarioDisponible(usuario) {
+
     this._mercantilService.getUsuario(usuario).subscribe((res: any) => {
       this.usuario = res;
-      console.log("llegue al servicio:" , this.usuario);
-    
+      console.log("llegue al servicio:", this.usuario);
+
 
     })
 
@@ -109,7 +114,6 @@ export class HomeComponent implements OnInit {
       this.marcas = res;
     })
   }
-
 
   ////////MODELOS/////
   selectedCodMarcas(datos) {
@@ -126,7 +130,7 @@ export class HomeComponent implements OnInit {
     // alert("marca "+datos.marca + "anio:"+ datos.anio + "modelo:"+ datos.mod)
     this._mercantilService.getVersiones(datos.marca, datos.anio, datos.mod).subscribe((res: any) => {
       console.log(res);
-      
+
       this.versiones = res;
       this.datosVehiculoComponent.obtenerVersion(this.versiones);
 
@@ -134,14 +138,17 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  
   //// COBERTURAS
-  selectCobertura( event ){
+  selectCobertura(event) {
     this.coberturaSelect = event;
-    console.log("selecciono cobertura home ",this.coberturaSelect);
-    
+    console.log("selecciono cobertura home ", this.coberturaSelect);
+
   }
 
+  datosPersonaHijos(dato) {
+    console.log("datoPadre", dato);
+    this.datosPersonaOtroComponente = dato;
+  }
 
 
 }
