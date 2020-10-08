@@ -29,7 +29,7 @@ export class DatosCoberturaComponent implements OnInit {
 
 
   onRowSelectCobertura(event){
-     console.log(event.data)
+    //  console.log(event.data)
     this.messageService.add({ severity: 'success', summary: 'Cobertura Seleccionada', detail: event.data.titulo })
     
     this.selectedCobertura.emit(event.data);

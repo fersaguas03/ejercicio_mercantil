@@ -89,10 +89,10 @@ export class MercantilService {
     const versiones: Version[] = [];
     datos.forEach(element => {
       let version: Version = {
-        codigo: 0, desc: ''
+        desc: '', codigo: 0
       };
-      version.codigo = element.codigo
       version.desc = element.desc
+      version.codigo = element.codigo
       versiones.push(version);
     });
     return versiones;

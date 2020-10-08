@@ -1,79 +1,82 @@
 <div class="p-grid">
     <div class="p-shadow-10 p-col-12">
-        <!--  -->
-        <form [formGroup]="form" (ngSubmit)="guardarDatosVehiculo()">
-            <div class="p-grid ">
-                <!-- {{ this.modelos }} -->
 
-                <div class="p-col">
+        <form  [formGroup]="form"  (ngSubmit)="guardarDatosVehiculo()" *ngIf="mostrarVehiculo">
+            <div class="p-grid">
+
+                <div class="p-col-12 p-md-6 p-lg-6">
                     <label for="inputtext">Marca</label><br>
-                    <p-autoComplete (onSelect)="clickSelectedMarca(selectedMarca.codigo)" [(ngModel)]="selectedMarca"
-                        [suggestions]="filteredMarcas" (completeMethod)="filterMarca($event)" field="desc"
-                        placeholder="Seleccionar marca" formControlName="marcaForm"></p-autoComplete>
-                    <!--  -->
-                    <div *ngIf="form.controls['marcaForm'].errors && form.controls['marcaForm'].dirty">
+                    <p-autoComplete 
+                    pTooltip="Seleccione la Marca" 
+                    (onSelect)="clickSelectedMarca(selectedMarca.codigo)" 
+                    [(ngModel)]="selectedMarca"
+                    [suggestions]="filteredMarcas" 
+                    (completeMethod)="filterMarca($event)" 
+                    field="desc"
+                    placeholder="Seleccionar marca" 
+                    formControlName="marca"
+                    ></p-autoComplete>
+
+                    <div *ngIf="form.controls['marca'].errors && form.controls['marca'].dirty">
                         <p-message severity="error" text="El Marca es obligatoria"
-                            *ngIf="form.controls['marcaForm'].errors['required']"></p-message>
+                            *ngIf="form.controls['marca'].errors['required']"></p-message>
                     </div>
 
-                    <!-- <div *ngIf="!form.controls['marcaForm'].errors && form.controls['marcaForm'].dirty">
-                        <p-message severity="success" text="¡Correcto!"></p-message>
-                    </div> -->
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-6">
                     <label for="inputtext">Año</label><br>
                     <p-dropdown (onChange)="clickSelectedAnio(selectedAnios)" [options]="anios"
-                        [(ngModel)]="selectedAnios" placeholder="Seleccionar un año" formControlName="anioForm">
+                        [(ngModel)]="selectedAnios" placeholder="Seleccionar un año"
+                        formControlName="anio">
                     </p-dropdown>
-                    <!--  formControlName="anioForm" -->
-                    <div *ngIf="form.controls['anioForm'].errors && form.controls['anioForm'].dirty">
+
+                    <div *ngIf="form.controls['anio'].errors && form.controls['anio'].dirty">
                         <p-message severity="error" text="El año es obligatorio"
-                            *ngIf="form.controls['anioForm'].errors['required']"></p-message>
+                            *ngIf="form.controls['anio'].errors['required']"></p-message>
                     </div>
-
-                    <!-- <div *ngIf="!form.controls['anioForm'].errors && form.controls['anioForm'].dirty">
-                        <p-message severity="success" text="¡Correcto!"></p-message>
-                    </div> -->
                 </div>
 
-                <div class="p-col" *ngIf="modelos !== []">
+                <div class="p-col-12 p-md-6 p-lg-6" *ngIf="modelos !== []">
                     <label for="inputtext">Modelo</label><br>
-                    <!-- <p-autoComplete [(ngModel)]="selectedModelos" [suggestions]="filteredModelos" (completeMethod)="filterModelo($event)"></p-autoComplete> -->
-                    <!-- <input type="text" id="inputtext" pInputText required> -->
-                    <!-- <p *ngIf="!this.mode"></p> -->
-                    <p-dropdown (onChange)="clickSelectedModelo(seleccionModelos)" [options]="modelosOptions" [(ngModel)]="seleccionModelos" placeholder="Selecciona Modelos"
-                        formControlName="modeloForm">
-                    </p-dropdown>
-                    <!-- formControlName="modeloForm" -->
-                    <div *ngIf="form.controls['modeloForm'].errors && form.controls['modeloForm'].dirty">
-                        <p-message severity="error" text="El Modelo es obligatorio"
-                            *ngIf="form.controls['modeloForm'].errors['required']"></p-message>
-                    </div>
 
-                    <!-- <div *ngIf="!form.controls['modeloForm'].errors && form.controls['modeloForm'].dirty">
-                        <p-message severity="success" text="¡Correcto!"></p-message>
-                    </div> -->
+                    <p-dropdown (onChange)="clickSelectedModelo(seleccionModelos)" [options]="modelosOptions"
+                        [(ngModel)]="seleccionModelos" placeholder="Selecciona Modelos"
+                        formControlName="modelo">
+                    </p-dropdown>
+
+                    <div *ngIf="form.controls['modelo'].errors && form.controls['modelo'].dirty">
+                        <p-message severity="error" text="El Modelo es obligatorio"
+                            *ngIf="form.controls['modelo'].errors['required']"></p-message>
+                    </div>
                 </div>
 
-                <div class="p-col" *ngIf="versiones !== []">
+                <div class="p-col-12 p-md-6 p-lg-6" *ngIf="versiones !== []">
                     <label for="inputtext">Version</label><br>
-                    <p-dropdown [options]="versionOptions" [ngModelOptions]="{standalone: true}" [(ngModel)]="versiones" placeholder="Selecciona la Version">
-                        <!-- formControlName="versionForm" -->
+                    <p-dropdown [options]="versionOptions"  [(ngModel)]="versiones"
+                        placeholder="Selecciona la Version" 
+                        formControlName="version">
                     </p-dropdown>
 
-                    <!-- <div *ngIf="form.controls['versionForm'].errors && form.controls['versionForm'].dirty">
+                    <div *ngIf="form.controls['version'].errors && form.controls['version'].dirty">
                         <p-message severity="error" text="La version es obligatoria"
-                            *ngIf="form.controls['versionForm'].errors['required']"></p-message>
-                    </div> -->
-
-                    <!-- <div *ngIf="!form.controls['versionForm'].errors && form.controls['versionForm'].dirty">
-                        <p-message severity="success" text="¡Correcto!"></p-message>
-                    </div> -->
-
+                            *ngIf="form.controls['version'].errors['required']"></p-message>
+                    </div>
 
                 </div>
             </div>
         </form>
+
+        <div class="p-col-10 p-offset-1" *ngIf="!mostrarVehiculo">
+            <br>
+            <h4> Se guardaron provisoriamente los datos del vehiculo</h4>
+        </div>
+
+
+        <div class="p-text-right">
+            <button pButton pRipple class="p-button-rounded p-button-info" type="button" icon="pi pi-arrow-right" label="Siguiente" (click)="guardarDatosVehiculo()" [disabled]="!form.valid"></button>
+        </div>
+
+
     </div>
 </div>

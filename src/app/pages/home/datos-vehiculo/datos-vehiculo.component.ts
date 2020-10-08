@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { DatosVehiculo } from 'src/app/model/datosVehiculo';
 import { Marca } from 'src/app/model/marca';
 
 
@@ -18,6 +19,7 @@ export class DatosVehiculoComponent implements OnInit {
   @Output() selectedCodMarca = new EventEmitter();
   @Output() anioOutput = new EventEmitter();
   @Output() seleccionModeloEmitido = new EventEmitter();
+  @Output() datosVehiculoHijo: EventEmitter<DatosVehiculo[]> = new EventEmitter<DatosVehiculo[]>();
 
   selectedAnio = false;
   selectedModelo = false;
@@ -38,6 +40,8 @@ export class DatosVehiculoComponent implements OnInit {
   modelosOptions: any[] = [];
   versionOptions: any[] = [];
   modelo: string;
+
+  mostrarVehiculo:boolean = true;
   form:FormGroup;
 
   constructor( private fb: FormBuilder ) {}
@@ -50,12 +54,15 @@ export class DatosVehiculoComponent implements OnInit {
     }
 
     this.form = this.fb.group({
-      'marcaForm': new FormControl('', Validators.required),
-      'anioForm': new FormControl('', Validators.required),
-      'modeloForm': new FormControl('', Validators.required)
-      // ,
-      // 'VersionForm': new FormControl('', Validators.required),
+      'marca': new FormControl('', Validators.required),
+      'anio': new FormControl('', Validators.required),
+      'modelo': new FormControl('', Validators.required),
+      'version': new FormControl('', Validators.required)
     });
+
+    // this.form.setValue({ 
+
+    // })
 
   }
 
@@ -101,7 +108,7 @@ export class DatosVehiculoComponent implements OnInit {
 
 
   obtenerModelo( modelos ){
-    console.log(modelos);
+    // console.log(modelos);
     for (let i = 0; i < modelos.length; i++) {
       this.modelosOptions.push({ label: modelos[i], value: modelos[i]});
     }
@@ -109,7 +116,7 @@ export class DatosVehiculoComponent implements OnInit {
 
 
   obtenerVersion( versiones ){
-    console.log(versiones);
+    // console.log(versiones);
 
     versiones.forEach(element => {
       this.versionOptions.push({ label : element.desc, value: element.codigo })
@@ -117,8 +124,9 @@ export class DatosVehiculoComponent implements OnInit {
   }
 
   guardarDatosVehiculo(){
+    this.mostrarVehiculo = !this.mostrarVehiculo;
     console.log(this.form.value);
-    console.log(this.form);
-    
+    // console.log(this.form);
+    this.datosVehiculoHijo.emit(this.form.value);
   }
 }

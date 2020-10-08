@@ -1,36 +1,36 @@
-<div class="card">
     <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedProduct2"  (onRowSelect)="onRowSelectCobertura($event)" (onRowUnselect)="onRowUnselectCobertura($event)"
         class="p-datatable-responsive-demo">
         <ng-template pTemplate="header">
             <tr>
-                <th>Numero</th>
+                <!-- <th>Numero</th> -->
+                <th>Titulo</th>
                 <th>Costo</th>
                 <th>Producto</th>
                 <th>Texto</th>
                 <th>Franquicia</th>
-                <th>Cod. Producto</th>
-                <th>Titulo</th>
-                <!-- <th>Descripcion</th> -->
+                <!-- <th>Cod. Producto</th> -->
+             
+                <th>Descripcion</th>
                 <th>Puntaje</th>
                 <th>Granizo</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cobertura>
             <tr [pSelectableRow]="cobertura">
-                <td>{{ cobertura.numero }}</td>
-                <td>{{ cobertura.costo | currency:'ARS '}}</td>
+                <td>{{ cobertura.titulo }}</td>
+                <!-- <td>{{ cobertura.numero }}</td> -->
+                <td>{{ cobertura.costo | currency:'$'}}</td>
                 <td>{{ cobertura.producto }}</td>
                 <td>{{ cobertura.texto }}</td>
-                <td>{{ cobertura.franquicia }}</td>
-                <td>{{ cobertura.codigoProducto }}</td>
-                <td>{{ cobertura.titulo }}</td>
-                <!-- <td>{{ cobertura.descripcion }}</td> -->
+                <td>{{ cobertura.franquicia | currency:'$'}}</td>
+                <!-- <td>{{ cobertura.codigoProducto }}</td> -->
+            
+                <td>{{ cobertura.descripcion }}</td>
                 <td>{{ cobertura.puntaje}}</td>
                 <td>{{ cobertura.granizo | pipeGranizo}}</td>
             </tr>
         </ng-template>
     </p-table>
-</div>
 <!-- <div class="p-col-10 p-offset-1">
     <div class="p-text-right">
         <button pButton type="submit" label="Siguiente" (click)="confirmaTodo()"></button>

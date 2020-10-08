@@ -1,9 +1,6 @@
-<h2>Los datos que se registraron fueron los siguientes:</h2>
-
 <div class="p-text-right">
     <button pButton type="submit" label="Hola" (click)="llamame()"></button>
 </div>
-
 
 <div *ngIf="mellamo">
     SI
@@ -13,56 +10,94 @@
     <!--  -->
 </div>
 
-
-<p-button (click)="mostrarDatosPVC()" icon="pi pi-eye" label="Ver Datos"></p-button>
+<div class="p-text-right">
+    <button pButton pRipple class="p-button-rounded p-button-success" type="button" (click)="mostrarDatosPVC()"
+        icon="pi pi-eye" label="Ver Datos"></button>
+</div>
 
 <div *ngIf="mellamo">
-<p-dialog header="Datos ingresados" [(visible)]="displayDatos" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p-dialog header="DATOS INGRESADOS" [(visible)]="displayDatos" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <hr>
+        <h3>Cliente</h3>
+        <hr>
+        <h4>DNI:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.dni}} </p>
 
-    <h6>Dni:</h6>
-    <p class="colorDatos"> {{ datosPersonaOtroComponente.dni}} </p>
+        <h4>Apellido:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.apellido}} </p>
 
-    <h6>Apellido:</h6>
-    <p class="colorDatos">    {{ datosPersonaOtroComponente.apellido}} </p>
+        <h4>Nombre:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.nombre}} </p>
 
-    <p>Nombre:</p>
-    <p class="colorDatos"> {{ datosPersonaOtroComponente.nombre}} </p>
+        <h4>Email:</h4>
+        <p class="colorDatos">{{ datosPersonaOtroComponente.email}}</p>
 
-    <p>Email:</p>
-    <p class="colorDatos">{{ datosPersonaOtroComponente.email}}</p>
+        <h4>Celular:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.celular }}</p>
 
-    <h6>Celular:</h6>
-    <p class="colorDatos">  {{ datosPersonaOtroComponente.celular }}</p> 
+        <h4>Telefono:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.telefono }}</p>
 
-    <p>Telefono:</p>
-    <p class="colorDatos">  {{ datosPersonaOtroComponente.telefono }}</p>
-   
-    <p>Provincia:</p>
-    <p class="colorDatos">  {{ datosPersonaOtroComponente.provincia.nombre }}</p>
-  
-    
-    <p>Municipio:</p>
-    <p class="colorDatos">  {{ datosPersonaOtroComponente.municipio.nombre }} </p>
-  
-
-    <p>Fecha de Nacimiento:</p>
-    <p class="colorDatos">  {{ datosPersonaOtroComponente.fechaNacimiento | date:'medium' }}</p>
-
-    <p>Usuario:</p>
-    <p class="colorDatos"> {{ datosPersonaOtroComponente.usuarios }} </p>
+        <h4>Provincia:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.provincia.nombre }}</p>
 
 
- 
+        <h4>Municipio:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.municipio.nombre }} </p>
+
+
+        <h4>Fecha de Nacimiento:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
+
+        <h4>Usuario:</h4>
+        <p class="colorDatos"> {{ datosPersonaOtroComponente.usuarios }} </p>
+
+        <hr>
+        <h3>Vehiculo</h3>
+        <hr>
+
+        <h4>Año:</h4>
+        <p class="colorDatos"> {{ datosVehiculoOtroComponente.anio}} </p>
+
+        <h4>Marca:</h4>
+        <p class="colorDatos"> {{ datosVehiculoOtroComponente.marca.desc}} </p>
+
+        <h4>Modelo:</h4>
+        <p class="colorDatos"> {{ datosVehiculoOtroComponente.modelo}} </p>
+
+        <h4>Version:</h4>
+        <p class="colorDatos"> {{ datosVehiculoOtroComponente.version}} </p>
+
+
+        <table>
+            <tr>
+                <th>Titulo</th>
+                <th>Costo</th>
+                <th>Texto</th>
+                <th>Franquicia</th>
+                <th>Descripcion</th>
+                <th>Granizo</th>
+            </tr>
+            <tr>
+                <!-- <td>{{ cobertura.titulo }}</td>
+                <td>{{ cobertura.costo | currency:'ARS '}}</td>
+                <td>{{ cobertura.texto }}</td>
+                <td>{{ cobertura.franquicia }}</td>
+                <td>{{ cobertura.descripcion }}</td>
+                <td>{{ cobertura.granizo | pipeGranizo}}</td> -->
+            </tr>
+        </table>
 
 
 
-    <ng-template pTemplate="footer">
- 
-        <p-button icon="pi pi-save" (click)="displayDatos=false" label="Guardar" styleClass="p-button-text"></p-button>
-        <p-button icon="pi pi-arrow-left" (click)="displayDatos=false" label="Cancelar"></p-button>
-    </ng-template>
-</p-dialog>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-save" (click)="displayDatos=false" label="Guardar" styleClass="p-button-text">
+            </p-button>
+            <p-button icon="pi pi-arrow-left" (click)="displayDatos=false" label="Cancelar"></p-button>
+        </ng-template>
+    </p-dialog>
 </div>
 <div *ngIf="!mellamo">
     <!--  -->
 </div>
+

@@ -11,6 +11,7 @@ import { DatosVehiculoComponent } from './datos-vehiculo/datos-vehiculo.componen
 import { BehaviorSubject } from 'rxjs';
 import { Cobertura } from 'src/app/model/cobertura';
 import { DatosPersonas } from 'src/app/model/datosPersona';
+import { DatosVehiculo } from 'src/app/model/datosVehiculo';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
   coberturas: Cobertura[];
   coberturaSelect: Cobertura;
   datosPersonaOtroComponente: DatosPersonas;
+  datosVehiculoOtroComponente: DatosVehiculo;
   // datosPersonales: DatosPersonales;
   // datosVehiculo: DatosVehiculo;
   confirmaPersona = true;
@@ -101,7 +103,7 @@ export class HomeComponent implements OnInit {
 
     this._mercantilService.getUsuario(usuario).subscribe((res: any) => {
       this.usuario = res;
-      console.log("llegue al servicio:", this.usuario);
+      // console.log("llegue al servicio:", this.usuario);
 
 
     })
@@ -129,7 +131,7 @@ export class HomeComponent implements OnInit {
   seleccionModeloEmitidos(datos) {
     // alert("marca "+datos.marca + "anio:"+ datos.anio + "modelo:"+ datos.mod)
     this._mercantilService.getVersiones(datos.marca, datos.anio, datos.mod).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
 
       this.versiones = res;
       this.datosVehiculoComponent.obtenerVersion(this.versiones);
@@ -141,13 +143,19 @@ export class HomeComponent implements OnInit {
   //// COBERTURAS
   selectCobertura(event) {
     this.coberturaSelect = event;
-    console.log("selecciono cobertura home ", this.coberturaSelect);
+    // console.log("selecciono cobertura home ", this.coberturaSelect);
 
   }
 
-  datosPersonaHijos(dato) {
-    console.log("datoPadre", dato);
+  datosPersonaHijos( dato ) {
+    // console.log("datoPadre", dato);
     this.datosPersonaOtroComponente = dato;
+  }
+
+  datosVehiculoHijos( dato ){
+    console.log("datoPadreVehiculo", dato);
+    this.datosVehiculoOtroComponente = dato;
+    
   }
 
 

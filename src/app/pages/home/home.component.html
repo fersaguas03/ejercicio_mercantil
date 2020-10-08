@@ -1,67 +1,46 @@
-    <div class="p-grid" class="animated fadeIn fast" *ngIf="!loading">
+<div class="p-grid" class="animated fadeIn fast" *ngIf="!loading">
 
-        <div class="p-col-10 p-offset-1" *ngIf="confirmaPersona">
-            <h2>Datos personales</h2>
-            <hr>
-            <br>
-            <app-datos-persona [datosPersonass]="datosPersonass" [provincias]='this.provincias' [municipios]="this.municipios"
-                (selectedNombreProvincia)="clickSelectedProvincia($event)" (usuarioInput)="usuarioDisponible($event)"
-                [usuario]="usuario" (datosPersonaHijo)="datosPersonaHijos($event)"></app-datos-persona>
-        </div>
-
-        <!-- <div class="p-col-10 p-offset-1" *ngIf="!confirmaPersona">
-            <br>
-            <h4> Se guardaron provisoriamente los datos personales</h4>
-        </div> -->
-
-        <!-- <div class="p-col-10 p-offset-1">
-            <div class="p-text-right">
-                <button pButton type="submit" label="Siguiente" (click)="confirmarDatosPersonales()"></button>
-            </div>
-        </div> -->
-
-
-
-        <div class="p-col-10 p-offset-1" *ngIf="confirmaVehiculo">
-            <h2>Datos del vehículo</h2>
-            <hr>
-            <br>
-            <app-datos-vehiculo [marcas]="this.marcas" (selectedCodMarca)="selectedCodMarcas($event)"
-                [modelos]="this.modelos" (seleccionModeloEmitido)="seleccionModeloEmitidos($event)"
-                [versiones]="this.versiones"></app-datos-vehiculo>
-        </div>
-
-        <div class="p-col-10 p-offset-1" *ngIf="!confirmaVehiculo">
-            <br>
-            <h4> Se guardaron provisoriamente los datos del vehiculo</h4>
-        </div>
-
-        <div class="p-col-10 p-offset-1">
-            <div class="p-text-right">
-                <button pButton type="submit" label="Siguiente" (click)="confirmarDatosVehiculo()"></button>
-            </div>
-        </div>
-
-        <div class="p-col-10 p-offset-1">
-            <h2>Cobertura disponibles</h2>
-            <hr>
-            <br>
-            <app-datos-cobertura [coberturas]="this.coberturas" (selectedCobertura)="selectCobertura($event)">
-            </app-datos-cobertura>
-            <!-- (coberturaSeleccionda)="coberturaSelected($event)" -->
-
-        </div>
-
-        <div class="p-col-10 p-offset-1">
-            <app-mostrar-datos [datosPersonaOtroComponente]="this.datosPersonaOtroComponente"></app-mostrar-datos>
-        </div>
-
-
+    <!-- Componente Persona -->
+    <div class="p-col-10 p-offset-1" *ngIf="confirmaPersona">
+        <h2>Datos personales</h2>
+        <hr>
+        <br>
+        <app-datos-persona [datosPersonass]="datosPersonass" [provincias]='this.provincias'
+            [municipios]="this.municipios" (selectedNombreProvincia)="clickSelectedProvincia($event)"
+            (usuarioInput)="usuarioDisponible($event)" [usuario]="usuario"
+            (datosPersonaHijo)="datosPersonaHijos($event)"></app-datos-persona>
     </div>
 
-    <div *ngIf="loading" class="p-text-center animated fadeIn fast">
+    <!-- Componente Vehiculo -->
+    <div class="p-col-10 p-offset-1" *ngIf="confirmaVehiculo">
+        <h2>Datos del vehículo</h2>
+        <hr>
+        <br>
+        <app-datos-vehiculo [marcas]="this.marcas" (selectedCodMarca)="selectedCodMarcas($event)"
+            [modelos]="this.modelos" (seleccionModeloEmitido)="seleccionModeloEmitidos($event)"
+            [versiones]="this.versiones" (datosVehiculoHijo)="datosVehiculoHijos($event)"></app-datos-vehiculo>
+    </div>
+
+
+    <!-- Componente Cobetura -->
+    <div class="p-col-10 p-offset-1">
+        <h2>Cobertura disponibles</h2>
+        <hr>
+        <br>
+        <app-datos-cobertura [coberturas]="this.coberturas" (selectedCobertura)="selectCobertura($event)">
+        </app-datos-cobertura>
+    </div>
+
+    <!-- Componente Ver Datos -->
+    <div class="p-col-10 p-offset-1">
+        <app-mostrar-datos [datosPersonaOtroComponente]="this.datosPersonaOtroComponente" [datosVehiculoOtroComponente]="this.datosVehiculoOtroComponente" [coberturaSelect]="this.coberturaSelect"></app-mostrar-datos>
+    </div>
+
+
+</div>
+
+<div *ngIf="loading" class="p-text-center animated fadeIn fast">
     <div class="marginTop">
         <p-progressSpinner></p-progressSpinner>
     </div>
 </div>
-

@@ -4,11 +4,11 @@
             <!-- <div *ngIf="!confirmaDatosPersona"> -->
             <div class="p-grid">
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>DNI</label>
                     <br>
-                    <p-inputNumber pTooltip="Ingrese el DNI" mode="decimal" [useGrouping]="false" minlength="7" maxlength="8" prefix="" required
-                        class="ng-dirty ng-valid p-mr-1" formControlName="dni">
+                    <p-inputNumber pTooltip="Ingrese el DNI" mode="decimal" [useGrouping]="false" minlength="7"
+                        maxlength="8" prefix="" required class="ng-dirty ng-valid p-mr-1" formControlName="dni">
                     </p-inputNumber>
                     <!-- VALIDACIONES -->
                     <!-- Requerido -->
@@ -26,12 +26,13 @@
                     </div>
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
 
                     <label>Apellido</label>
                     <br>
-                    <input type="text" pTooltip="Ingrese el Apellido" tooltipPosition="top" pInputText pKeyFilter="alpha" placeholder="Garcia" minlength="2"
-                        maxlength="15" class="ng-dirty ng-valid p-mr-1" formControlName="apellido">
+                    <input type="text" pTooltip="Ingrese el Apellido" tooltipPosition="top" pInputText
+                        pKeyFilter="alpha" placeholder="Garcia" minlength="2" maxlength="15"
+                        class="ng-dirty ng-valid p-mr-1" formControlName="apellido">
                     <!-- Requerido -->
                     <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].dirty">
                         <p-message severity="error" text="El apellido es obligatorio"
@@ -46,11 +47,11 @@
                     </div>
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Nombre</label>
                     <br>
-                    <input type="text" pTooltip="Ingrese el Nombre" pInputText pKeyFilter="alpha" minlength="2" maxlength="15" pInputText
-                        placeholder="Juan Alberto" required formControlName="nombre">
+                    <input type="text" pTooltip="Ingrese el Nombre" pInputText pKeyFilter="alpha" minlength="2"
+                        maxlength="15" pInputText placeholder="Juan Alberto" required formControlName="nombre">
                     <!-- Requerido -->
                     <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].dirty">
                         <p-message severity="error" text="El nombre es obligatorio"
@@ -66,9 +67,10 @@
 
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Email</label><br>
-                    <input type="text" pTooltip="Ingrese Email" id="inputtext" pInputText placeholder="juan_alberto@mail.com" formControlName="email">
+                    <input type="text" pTooltip="Ingrese Email" id="inputtext" pInputText
+                        placeholder="juan_alberto@mail.com" formControlName="email">
                     <div *ngIf="form.controls['email'].errors && form.controls['email'].dirty">
                         <p-message severity="error" text="El email es obligatorio"
                             *ngIf="form.controls['email'].errors['required']"></p-message>
@@ -80,10 +82,10 @@
                     </div>
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Celular</label><br>
-                    <p-inputNumber pTooltip="Ingrese su Celular" mode="decimal" [useGrouping]="false" minlength="9" maxlength="10"
-                        placeholder="(999) 999-9999" formControlName="celular"></p-inputNumber>
+                    <p-inputNumber pTooltip="Ingrese su Celular" mode="decimal" [useGrouping]="false" minlength="9"
+                        maxlength="10" placeholder="(999) 999-9999" formControlName="celular"></p-inputNumber>
 
                     <div *ngIf="form.controls['celular'].errors && form.controls['celular'].dirty">
                         <!-- MIN y MAX de caracteres -->
@@ -96,10 +98,10 @@
                     </div>
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Teléfono</label><br>
-                    <p-inputNumber pTooltip="Ingrese el Teléfono" mode="decimal" [useGrouping]="false" minlength="9" maxlength="10"
-                        placeholder="(999) 999-9999" formControlName="telefono"></p-inputNumber>
+                    <p-inputNumber pTooltip="Ingrese el Teléfono" mode="decimal" [useGrouping]="false" minlength="9"
+                        maxlength="10" placeholder="(999) 999-9999" formControlName="telefono"></p-inputNumber>
                     <div *ngIf="form.controls['telefono'].errors && form.controls['telefono'].dirty">
                         <!-- MIN y MAX de caracteres -->
                         <p-message severity="error" text="El minimo es de 10 y 11 caracteres"
@@ -111,9 +113,10 @@
                     </div>
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Provincia</label><br>
-                    <p-autoComplete pTooltip="Seleccione la Provincia" (keyup)="clickSelectedProvinciaEnter(selectedProvincia.nombre)"
+                    <p-autoComplete pTooltip="Seleccione la Provincia"
+                        (keyup)="clickSelectedProvinciaEnter(selectedProvincia.nombre)"
                         (focusout)="clickSelectedProvincia(selectedProvincia.nombre)" [(ngModel)]="selectedProvincia"
                         [suggestions]="filteredProvincias" (completeMethod)="filterProvincia($event)" field="nombre"
                         placeholder="Ingrese su provincia" formControlName="provincia"></p-autoComplete>
@@ -127,11 +130,11 @@
                     </div> -->
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Municipio</label><br>
-                    <p-autoComplete pTooltip="Seleccione el municipio" [(ngModel)]="selectedMunicipio" [suggestions]="filteredMunicipios"
-                        (completeMethod)="filterMunicipio($event)" field="nombre" placeholder="Ingrese su municipio"
-                        formControlName="municipio">
+                    <p-autoComplete pTooltip="Seleccione el municipio" [(ngModel)]="selectedMunicipio"
+                        [suggestions]="filteredMunicipios" (completeMethod)="filterMunicipio($event)" field="nombre"
+                        placeholder="Ingrese su municipio" formControlName="municipio">
                     </p-autoComplete>
                     <div *ngIf="form.controls['municipio'].errors && form.controls['municipio'].dirty">
                         <p-message severity="error" text="El municipio es obligatorio"
@@ -142,10 +145,10 @@
                     </div> -->
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Fecha de nacimiento</label><br>
-                    <p-calendar pTooltip="Ingrese su fecha de nacimiento" [monthNavigator]="true" [yearNavigator]="true" yearRange="1921:2020"
-                        inputId="navigators" formControlName="fechaNacimiento"></p-calendar>
+                    <p-calendar pTooltip="Ingrese su fecha de nacimiento" [monthNavigator]="true" [yearNavigator]="true"
+                        yearRange="1921:2020" inputId="navigators" formControlName="fechaNacimiento"></p-calendar>
                     <div *ngIf="form.controls['fechaNacimiento'].errors && form.controls['fechaNacimiento'].dirty">
                         <p-message severity="error" text="La fecha Nacimiento es obligatoria"
                             *ngIf="form.controls['fechaNacimiento'].errors['required']"></p-message>
@@ -158,21 +161,22 @@
                     </div>
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Usuario</label><br>
-                    <input pTooltip="Ingrese usuario" minlength="3" maxlength="30" type="text" pInputText required placeholder="juan.garcia"
-                        #usuarioss (keyup)="onChangeUsuario(usuarioss.value)" [(ngModel)]="nombreUsuarioModelo"
-                        formControlName="usuarios">
+                    <input pTooltip="Ingrese usuario" minlength="3" maxlength="30" type="text" pInputText required
+                        placeholder="juan.garcia" #usuarioss (keyup)="onChangeUsuario(usuarioss.value)"
+                        [(ngModel)]="nombreUsuarioModelo" required formControlName="usuarios">
 
                     <div *ngIf="form.controls['usuarios'].errors && form.controls['usuarios'].dirty">
                         <p-message severity="error" text="El usuario es obligatorio"
                             *ngIf="form.controls['usuarios'].errors['required']"></p-message>
                     </div>
                     <p-message *ngIf="usuario" severity="error" text="Ya existe este usuario"></p-message>
-                    <p-message *ngIf="!usuario" severity="success" text="¡Correcto!"></p-message>
+                    <p-message *ngIf="!usuario " severity="success" text="¡Correcto!"></p-message>
+
                 </div>
 
-                <div class="p-col">
+                <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Contraseña</label><br>
                     <input pTooltip="Ingrese contraseña" type="password" pInputText required placeholder="Juanalberto12"
                         formControlName="contrasenia">
@@ -199,7 +203,8 @@
 
 
         <div class="p-text-right">
-            <button pButton type="submit" label="Siguiente" (click)="guardarDatosPersona()"></button>
+            <button pButton pRipple class="p-button-rounded p-button-info" type="button" icon="pi pi-arrow-right"
+                label="Siguiente" (click)="guardarDatosPersona()" [disabled]="!form.valid"></button>
         </div>
     </div>
 </div>

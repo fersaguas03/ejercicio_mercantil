@@ -51,7 +51,7 @@ export class DatosPersonaComponent implements OnInit {
       'apellido': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
       'nombre': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
       'email': new FormControl('', [Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
-      'celular': new FormControl('', Validators.compose([Validators.min(10), Validators.max(11)])),
+      'celular': new FormControl('', Validators.compose([Validators.minLength(10), Validators.maxLength(11)])),
       'telefono': new FormControl('', Validators.compose([Validators.minLength(10), Validators.maxLength(11)])),
       'provincia': new FormControl('', Validators.required),
       'municipio': new FormControl('', Validators.required),
@@ -66,7 +66,7 @@ export class DatosPersonaComponent implements OnInit {
   onChangeUsuario( value ){
 
     this.nombreUsuarioModelo = value;
-    console.log(this.nombreUsuarioModelo);
+    // console.log(this.nombreUsuarioModelo);
     this.usuarioInput.emit( this.nombreUsuarioModelo )
   }
 
@@ -78,11 +78,11 @@ export class DatosPersonaComponent implements OnInit {
       let provincia = this.provincias[i];
       if (provincia.nombre.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(provincia);
-        console.log(provincia);
+        // console.log(provincia);
       }
     }
     this.filteredProvincias = filtered;
-    console.log(this.filteredProvincias);
+    // console.log(this.filteredProvincias);
   }
 
   filterMunicipio(event) {
@@ -95,7 +95,7 @@ export class DatosPersonaComponent implements OnInit {
       }
     }
     this.filteredMunicipios = filtered;
-    console.log(this.filteredMunicipios);
+    // console.log(this.filteredMunicipios);
   }
 
   clickSelectedProvincia( nombre: string){
@@ -112,9 +112,9 @@ export class DatosPersonaComponent implements OnInit {
 
   guardarDatosPersona(){
 
-    // console.log(this.form.value);
+    console.log(this.form.value);
     this.mostrarPersona = !this.mostrarPersona;
-    console.log(this.form);
+    // console.log(this.form);
     this.datosPersonaHijo.emit(this.form.value);
 
   }
