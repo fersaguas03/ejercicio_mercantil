@@ -48,26 +48,16 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
 
-    // setInterval(() => {
-
       this.municipios = [];
       this.provincias = [];
       this.marcas = [];
-
       this.getProvinciaService();
       this.getMarcasService();
-      // this.getCoberturasService();
-
       this._mercantilService.getCoberturas().then((data: any) => {
-        this.coberturas = data;
-        // console.log("data ", data);
+      this.coberturas = data;
+
       });
-
-      this.loading = false;
-    // },);
-
-
-
+  
   }
 
   confirmarDatosPersonales() {

@@ -14,6 +14,7 @@ export class MostrarDatosComponent implements OnInit {
   @Input() coberturaSelect: any;
   mellamo: boolean = false;
   displayDatos: boolean;
+  displayModalGuardado: boolean;
 
 
   constructor() { }
@@ -40,5 +41,19 @@ export class MostrarDatosComponent implements OnInit {
     console.log("llego la cobertura mostrar PVC", this.coberturaSelect.titulo);
   }
 
+  guardarDatos(){
+    this.displayDatos=false
+    this.showModalDialog();
+  }
+
+
+  showModalDialog(){
+    this.displayModalGuardado = true;
+  }
+
+  refresh(): void {
+    this.displayModalGuardado=false
+    window.location.reload();
+}
 
 }

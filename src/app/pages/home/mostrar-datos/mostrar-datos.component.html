@@ -68,30 +68,9 @@
 
         <h4>Version:</h4>
         <p class="colorDatos"> {{ datosVehiculoOtroComponente.version}} </p>
-
-        <!-- <td>{{ cobertura.titulo }}</td> -->
         <hr>
         <h3 class="p-text-center">Cobertura</h3>
         <hr>
-
-        <!-- <table>
-            <tr>
-                <th>Titulo</th>
-                <th>Costo</th>
-                <th>Texto</th>
-                <th>Franquicia</th>
-                <th>Descripcion</th>
-                <th>Granizo</th>
-            </tr>
-            <tr>
-                {{ this.coberturaSelect.titulo }}
-                <td>{{ cobertura.costo | currency:'ARS '}}</td>
-                <td>{{ cobertura.texto }}</td>
-                <td>{{ cobertura.franquicia }}</td>
-                <td>{{ cobertura.descripcion }}</td>
-                <td>{{ cobertura.granizo | pipeGranizo}}</td>
-            </tr>
-        </table> -->
 
         <div class="tabla-tamanio">
             <p-table>
@@ -118,12 +97,24 @@
         </div>
 
         <ng-template pTemplate="footer">
-            <p-button icon="pi pi-save" (click)="displayDatos=false" label="Guardar" styleClass="p-button-text">
+            <p-button icon="pi pi-save" (click)="guardarDatos()" label="Guardar" styleClass="p-button-text">
             </p-button>
             <p-button icon="pi pi-arrow-left" (click)="displayDatos=false" label="Cancelar"></p-button>
         </ng-template>
     </p-dialog>
 </div>
+
+
+<!-- <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+<p-dialog header="Éxito!" [(visible)]="displayModalGuardado" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <h2 class="p-text-center"><strong>¡SE GUARDARON LOS DATOS CORRECTAMENTE!</strong></h2>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="refresh()" label="Ok" class="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>
+
+
 <div *ngIf="!mellamo">
     <!--  -->
 </div>
