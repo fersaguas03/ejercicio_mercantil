@@ -8,7 +8,7 @@ import {MessageService} from 'primeng/api';
 @Component({
   selector: 'app-datos-cobertura',
   templateUrl: './datos-cobertura.component.html',
-  styleUrls: ['./datos-cobertura.component.scss'],
+  styleUrls: ['./datos-cobertura.component.css'],
   providers:[MessageService]
 })
 export class DatosCoberturaComponent implements OnInit {

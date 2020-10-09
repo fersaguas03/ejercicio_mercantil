@@ -1,0 +1,13 @@
+@media only screen and (max-width: 1032px) {
+    .tabla-tamanios{
+        overflow-x:scroll;
+          width: 1000px !;
+
+      }
+      .tamanio-header{
+        width:100px;
+    }
+      
+  }
+
+

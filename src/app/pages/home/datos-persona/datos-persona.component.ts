@@ -37,7 +37,7 @@ export class DatosPersonaComponent implements OnInit {
   nombreUsuarioModelo: string;
   confirmaDatosPersona: boolean;
   mostrarPersona: boolean = true;
-
+  labelSiguiente: string = "Siguiente";
 
   constructor( private activatedRoute: ActivatedRoute, private fb: FormBuilder ) { }
 
@@ -111,11 +111,17 @@ export class DatosPersonaComponent implements OnInit {
   }
 
   guardarDatosPersona(){
-
     console.log(this.form.value);
     this.mostrarPersona = !this.mostrarPersona;
     // console.log(this.form);
     this.datosPersonaHijo.emit(this.form.value);
+
+    // if( this.mostrarPersona = true){
+    //   this.labelSiguiente = "Siguiente"
+    // }
+    // else{
+    //   this.labelSiguiente = "Editar"
+    // }
 
   }
   

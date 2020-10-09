@@ -1,21 +1,10 @@
 <div class="p-text-right">
-    <button pButton type="submit" label="Hola" (click)="llamame()"></button>
-</div>
-
-<div *ngIf="mellamo">
-    SI
-    <!-- {{ datosPersonaOtroComponente.apellido}} -->
-</div>
-<div *ngIf="!mellamo">
-    <!--  -->
-</div>
-
-<div class="p-text-right">
-    <button pButton pRipple class="p-button-rounded p-button-success" type="button" (click)="mostrarDatosPVC()"
+    <!-- disabled="{{botondes}}" -->
+    <button  pButton pRipple class="p-button-rounded p-button-success" type="button" (click)="mostrarDatosPVC()"
         icon="pi pi-eye" label="Ver Datos"></button>
 </div>
 
-<div *ngIf="mellamo">
+<div *ngIf="muestroModal">
     <p-dialog header="DATOS INGRESADOS" [(visible)]="displayDatos" [style]="{width: '50vw'}" [baseZIndex]="10000"
         class="header-modal">
         <hr>
@@ -106,8 +95,7 @@
 
 
 <!-- <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-<p-dialog header="Éxito!" [(visible)]="displayModalGuardado" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false">
+<p-dialog header="Éxito!" [(visible)]="displayModalGuardado" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <h2 class="p-text-center"><strong>¡SE GUARDARON LOS DATOS CORRECTAMENTE!</strong></h2>
         <ng-template pTemplate="footer">
             <p-button icon="pi pi-check" (click)="refresh()" label="Ok" class="p-button-text"></p-button>
@@ -115,6 +103,6 @@
 </p-dialog>
 
 
-<div *ngIf="!mellamo">
+<div *ngIf="!muestroModal">
     <!--  -->
 </div>

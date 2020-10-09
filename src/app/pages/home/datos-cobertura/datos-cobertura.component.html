@@ -1,18 +1,19 @@
-    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedProduct2"  (onRowSelect)="onRowSelectCobertura($event)" (onRowUnselect)="onRowUnselectCobertura($event)"
+<div class="tabla-tamanios">
+    <p-table [value]="coberturas" selectionMode="single" [(selection)]="selectedProduct2"
+        (onRowSelect)="onRowSelectCobertura($event)" (onRowUnselect)="onRowUnselectCobertura($event)"
         class="p-datatable-responsive-demo">
         <ng-template pTemplate="header">
             <tr>
                 <!-- <th>Numero</th> -->
-                <th>Titulo</th>
-                <th>Costo</th>
-                <th>Producto</th>
-                <th>Texto</th>
-                <th>Franquicia</th>
+                <th class="tamanio-header">Titulo</th>
+                <th class="tamanio-header">Costo</th>
+                <th class="tamanio-header">Producto</th>
+                <th class="tamanio-header">Texto</th>
+                <th class="tamanio-header">Franquicia</th>
                 <!-- <th>Cod. Producto</th> -->
-             
-                <th>Descripcion</th>
-                <th>Puntaje</th>
-                <th>Granizo</th>
+                <th class="tamanio-header">Descripcion</th>
+                <th class="tamanio-header">Puntaje</th>
+                <th class="tamanio-header">Granizo</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cobertura>
@@ -24,15 +25,11 @@
                 <td>{{ cobertura.texto }}</td>
                 <td>{{ cobertura.franquicia | currency:'$'}}</td>
                 <!-- <td>{{ cobertura.codigoProducto }}</td> -->
-            
+
                 <td>{{ cobertura.descripcion }}</td>
                 <td>{{ cobertura.puntaje}}</td>
                 <td>{{ cobertura.granizo | pipeGranizo}}</td>
             </tr>
         </ng-template>
     </p-table>
-<!-- <div class="p-col-10 p-offset-1">
-    <div class="p-text-right">
-        <button pButton type="submit" label="Siguiente" (click)="confirmaTodo()"></button>
-    </div>
-</div> -->
+</div>

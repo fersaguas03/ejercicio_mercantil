@@ -5,17 +5,17 @@ import { DatosPersonas } from 'src/app/model/datosPersona';
 @Component({
   selector: 'app-mostrar-datos',
   templateUrl: './mostrar-datos.component.html',
-  styleUrls: ['./mostrar-datos.component.scss']
+  styleUrls: ['./mostrar-datos.component.css']
 })
 export class MostrarDatosComponent implements OnInit {
 
   @Input() datosPersonaOtroComponente: any;
   @Input() datosVehiculoOtroComponente: any;
   @Input() coberturaSelect: any;
-  mellamo: boolean = false;
+  muestroModal: boolean = false;
   displayDatos: boolean;
   displayModalGuardado: boolean;
-
+  // botondes: string = "false"
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class MostrarDatosComponent implements OnInit {
   }
 
   llamame() {
-    this.mellamo = !this.mellamo;
+    this.muestroModal = !this.muestroModal;
     console.log("llego", this.datosPersonaOtroComponente.apellido);
     console.log("llego vehiculo del padre", this.datosVehiculoOtroComponente);
     console.log("llego la cobertura llamame", this.coberturaSelect);
@@ -36,7 +36,7 @@ export class MostrarDatosComponent implements OnInit {
 
   mostrarDatosPVC() {
     console.log("click");
-    this.mellamo = !this.mellamo;
+    this.muestroModal = !this.muestroModal;
     this.displayDatos = true;
     console.log("llego la cobertura mostrar PVC", this.coberturaSelect.titulo);
   }
