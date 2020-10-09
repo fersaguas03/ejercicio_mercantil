@@ -16,9 +16,10 @@
 </div>
 
 <div *ngIf="mellamo">
-    <p-dialog header="DATOS INGRESADOS" [(visible)]="displayDatos" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p-dialog header="DATOS INGRESADOS" [(visible)]="displayDatos" [style]="{width: '50vw'}" [baseZIndex]="10000"
+        class="header-modal">
         <hr>
-        <h3>Cliente</h3>
+        <h3 class="p-text-center">Cliente</h3>
         <hr>
         <h4>DNI:</h4>
         <p class="colorDatos"> {{ datosPersonaOtroComponente.dni}} </p>
@@ -53,7 +54,7 @@
         <p class="colorDatos"> {{ datosPersonaOtroComponente.usuarios }} </p>
 
         <hr>
-        <h3>Vehiculo</h3>
+        <h3 class="p-text-center">Vehiculo</h3>
         <hr>
 
         <h4>Año:</h4>
@@ -68,8 +69,12 @@
         <h4>Version:</h4>
         <p class="colorDatos"> {{ datosVehiculoOtroComponente.version}} </p>
 
+        <!-- <td>{{ cobertura.titulo }}</td> -->
+        <hr>
+        <h3 class="p-text-center">Cobertura</h3>
+        <hr>
 
-        <table>
+        <!-- <table>
             <tr>
                 <th>Titulo</th>
                 <th>Costo</th>
@@ -79,16 +84,38 @@
                 <th>Granizo</th>
             </tr>
             <tr>
-                <!-- <td>{{ cobertura.titulo }}</td>
+                {{ this.coberturaSelect.titulo }}
                 <td>{{ cobertura.costo | currency:'ARS '}}</td>
                 <td>{{ cobertura.texto }}</td>
                 <td>{{ cobertura.franquicia }}</td>
                 <td>{{ cobertura.descripcion }}</td>
-                <td>{{ cobertura.granizo | pipeGranizo}}</td> -->
+                <td>{{ cobertura.granizo | pipeGranizo}}</td>
             </tr>
-        </table>
+        </table> -->
 
+        <div class="tabla-tamanio">
+            <p-table>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:200px">Titulo </th>
+                        <th style="width:200px">Costo </th>
+                        <th style="width:200px">Texto </th>
+                        <th style="width:200px">Franquicia </th>
+                        <th style="width:200px">Descripcion </th>
+                        <th style="width:200px">Granizo </th>
+                    </tr>
+                    <tr>
+                        <td>{{ this.coberturaSelect.titulo }}</td>
+                        <td>{{ this.coberturaSelect.costo | currency:'$'}}</td>
+                        <td>{{ this.coberturaSelect.texto }}</td>
+                        <td>{{ this.coberturaSelect.franquicia  | currency:'$'}}</td>
+                        <td>{{ this.coberturaSelect.descripcion }}</td>
+                        <td>{{ this.coberturaSelect.granizo | pipeGranizo}}</td>
+                    </tr>
+                </ng-template>
 
+            </p-table>
+        </div>
 
         <ng-template pTemplate="footer">
             <p-button icon="pi pi-save" (click)="displayDatos=false" label="Guardar" styleClass="p-button-text">
@@ -100,4 +127,3 @@
 <div *ngIf="!mellamo">
     <!--  -->
 </div>
-

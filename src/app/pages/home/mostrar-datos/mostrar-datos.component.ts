@@ -5,7 +5,7 @@ import { DatosPersonas } from 'src/app/model/datosPersona';
 @Component({
   selector: 'app-mostrar-datos',
   templateUrl: './mostrar-datos.component.html',
-  styleUrls: ['./mostrar-datos.component.css']
+  styleUrls: ['./mostrar-datos.component.scss']
 })
 export class MostrarDatosComponent implements OnInit {
 
@@ -37,7 +37,7 @@ export class MostrarDatosComponent implements OnInit {
     console.log("click");
     this.mellamo = !this.mellamo;
     this.displayDatos = true;
-    console.log("llego la cobertura mostrar PVC", this.coberturaSelect);
+    console.log("llego la cobertura mostrar PVC", this.coberturaSelect.titulo);
   }
 
 
