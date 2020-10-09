@@ -44,6 +44,9 @@ export class DatosVehiculoComponent implements OnInit {
   mostrarVehiculo:boolean = true;
   form:FormGroup;
 
+  labelSiguiente: string = "Siguiente";
+  iconSE: string = "pi pi-arrow-right";
+
   constructor( private fb: FormBuilder ) {}
 
   ngOnInit(): void {
@@ -128,5 +131,16 @@ export class DatosVehiculoComponent implements OnInit {
     console.log(this.form.value);
     // console.log(this.form);
     this.datosVehiculoHijo.emit(this.form.value);
+
+    if( this.mostrarVehiculo == true){
+      this.labelSiguiente = "Siguiente"
+      this.iconSE = "pi pi-arrow-right"
+    }
+    else{
+      this.labelSiguiente = "Editar"
+      this.iconSE = "pi pi-pencil"
+    }
+
+
   }
 }

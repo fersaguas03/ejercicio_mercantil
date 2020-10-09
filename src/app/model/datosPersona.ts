@@ -5,7 +5,7 @@ export interface DatosPersonas {
     dni: string
     email: string
     fechaNacimiento: string
-    municipio: undefined
+    municipio: { id: string, nombre: string }
     nombre: string
     provincia: { id: string, nombre: string }
     telefono: string

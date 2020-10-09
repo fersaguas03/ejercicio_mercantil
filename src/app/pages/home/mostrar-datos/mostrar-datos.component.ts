@@ -17,11 +17,10 @@ export class MostrarDatosComponent implements OnInit {
   displayModalGuardado: boolean;
   // botondes: string = "false"
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
-
-
 
   }
 

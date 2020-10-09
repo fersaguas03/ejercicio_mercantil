@@ -38,6 +38,7 @@ export class DatosPersonaComponent implements OnInit {
   confirmaDatosPersona: boolean;
   mostrarPersona: boolean = true;
   labelSiguiente: string = "Siguiente";
+  iconSE: string = "pi pi-arrow-right";
 
   constructor( private activatedRoute: ActivatedRoute, private fb: FormBuilder ) { }
 
@@ -115,13 +116,16 @@ export class DatosPersonaComponent implements OnInit {
     this.mostrarPersona = !this.mostrarPersona;
     // console.log(this.form);
     this.datosPersonaHijo.emit(this.form.value);
-
-    // if( this.mostrarPersona = true){
-    //   this.labelSiguiente = "Siguiente"
-    // }
-    // else{
-    //   this.labelSiguiente = "Editar"
-    // }
+    console.log(this.labelSiguiente);
+    
+    if( this.mostrarPersona == true){
+      this.labelSiguiente = "Siguiente"
+      this.iconSE = "pi pi-arrow-right"
+    }
+    else{
+      this.labelSiguiente = "Editar"
+      this.iconSE = "pi pi-pencil"
+    }
 
   }
   
