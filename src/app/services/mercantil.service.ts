@@ -30,8 +30,7 @@ export class MercantilService {
     return this.http.get( urlProvincia );
   }
   
-
-
+  
   getMunicipio( nombreProvincia: string ): Observable<any>{
     const urlMunicipio = this.urlBaseAPIGeo + "/municipios?provincia=" +  nombreProvincia + "&campos=id,nombre&max=130";
     return this.http.get( urlMunicipio );
@@ -54,7 +53,6 @@ export class MercantilService {
 
   
   // https://servicios.qamercantilandina.com.ar/api/v1/vehiculos/marcas/32/2010
-
   getModelos( codigoMarca: string, anio: string ): Observable<any>{
 
     const urlVehiculos = this.urlBaseAPIMercantil + "/marcas/" + codigoMarca + "/" + anio;
@@ -78,14 +76,11 @@ export class MercantilService {
     return this.http.get<any>( urlCobertura ).toPromise()
     .then(res => <Cobertura[]>res)
     .then( data =>{ 
-      // console.log("data service",data); 
       return data; 
     });
   }
 
   mapearVersiones( datos ){
-    console.log(datos);
-    
     const versiones: Version[] = [];
     datos.forEach(element => {
       let version: Version = {

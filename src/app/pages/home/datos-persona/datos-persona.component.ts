@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-
 import { MessageService } from 'primeng/api';
 import { DatosPersonas } from 'src/app/model/datosPersona';
 import { Municipio } from 'src/app/model/municipio';
@@ -21,7 +20,6 @@ export class DatosPersonaComponent implements OnInit {
   @Input() public municipios: Municipio[];
   @Input() usuario : boolean;
   @Input() datosPersonass: DatosPersonas;
-  // @Input() datosPersonale: DatoSpER
   @Output() public selectedNombreProvincia: EventEmitter<string> = new EventEmitter<string>();
   @Output() public usuarioInput = new EventEmitter();
   @Output() datosPersonaHijo: EventEmitter<DatosPersonas[]> = new EventEmitter<DatosPersonas[]>();
@@ -45,9 +43,8 @@ export class DatosPersonaComponent implements OnInit {
   ngOnInit(): void {
     this.provincias = [];
     this.municipios = [];
-    // this.datosPersonale.dni
-    // this.datosPersonass.dni
     this.form = this.fb.group({
+      // 'dni': new FormControl('', Validators.required),
       'dni': new FormControl('', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(8)])),
       'apellido': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
       'nombre': new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])),
@@ -65,9 +62,7 @@ export class DatosPersonaComponent implements OnInit {
 
 
   onChangeUsuario( value ){
-
     this.nombreUsuarioModelo = value;
-    // console.log(this.nombreUsuarioModelo);
     this.usuarioInput.emit( this.nombreUsuarioModelo )
   }
 
@@ -79,11 +74,9 @@ export class DatosPersonaComponent implements OnInit {
       let provincia = this.provincias[i];
       if (provincia.nombre.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(provincia);
-        // console.log(provincia);
       }
     }
     this.filteredProvincias = filtered;
-    // console.log(this.filteredProvincias);
   }
 
   filterMunicipio(event) {
@@ -96,7 +89,6 @@ export class DatosPersonaComponent implements OnInit {
       }
     }
     this.filteredMunicipios = filtered;
-    // console.log(this.filteredMunicipios);
   }
 
   clickSelectedProvincia( nombre: string){
@@ -107,16 +99,9 @@ export class DatosPersonaComponent implements OnInit {
     this.selectedNombreProvincia.emit( nombre );
   }
 
-  clickSiguiente(){
-    // this.confirmaDatosPersona =+ this.confirmaDatosPersona;
-  }
-
   guardarDatosPersona(){
-    console.log(this.form.value);
     this.mostrarPersona = !this.mostrarPersona;
-    // console.log(this.form);
     this.datosPersonaHijo.emit(this.form.value);
-    console.log(this.labelSiguiente);
     
     if( this.mostrarPersona == true){
       this.labelSiguiente = "Siguiente"

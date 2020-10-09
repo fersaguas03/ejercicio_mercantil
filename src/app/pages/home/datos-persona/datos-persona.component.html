@@ -1,14 +1,12 @@
 <div class="p-grid">
     <div class="p-shadow-10 p-col">
         <form [formGroup]="form" (ngSubmit)="guardarDatosPersona()" *ngIf="mostrarPersona">
-            <!-- <div *ngIf="!confirmaDatosPersona"> -->
             <div class="p-grid">
 
                 <div class="p-col-12 p-md-6 p-lg-3">
                     <label>DNI</label>
                     <br>
-                    <p-inputNumber pTooltip="Ingrese el DNI" mode="decimal" [useGrouping]="false" minlength="7"
-                        maxlength="8" prefix="" required class="ng-dirty ng-valid p-mr-1" formControlName="dni">
+                    <p-inputNumber pTooltip="Ingrese el DNI" mode="decimal" [useGrouping]="false" prefix="" minlength="7" maxlength="8" required class="ng-dirty ng-valid p-mr-1" formControlName="dni">
                     </p-inputNumber>
                     <!-- VALIDACIONES -->
                     <!-- Requerido -->
@@ -16,8 +14,11 @@
                         <p-message severity="error" text="El DNI es obligatorio"
                             *ngIf="form.controls['dni'].errors['required']"></p-message>
                         <!-- MIN y MAX de caracteres -->
-                        <p-message severity="error" text="El minimo son 7 caracteres y maximo 8 caracteres"
-                            *ngIf="form.controls['dni'].errors['minLength'] && form.controls['dni'].errors['maxLength']">
+                        <p-message severity="error" text="El minimo son 7 caracteres"
+                            *ngIf="form.controls['dni'].errors['minlength']">
+                        </p-message>
+                        <p-message severity="error" text="El maximo son 8 caracteres"
+                            *ngIf="form.controls['dni'].errors['maxlength']">
                         </p-message>
                     </div>
                     <div *ngIf="!form.controls['dni'].errors && form.controls['dni'].dirty">
@@ -31,7 +32,7 @@
                     <label>Apellido</label>
                     <br>
                     <input type="text" pTooltip="Ingrese el Apellido" tooltipPosition="top" pInputText
-                        pKeyFilter="alpha" placeholder="Garcia" minlength="2" maxlength="15"
+                        pKeyFilter="alpha" placeholder="Garcia"
                         class="ng-dirty ng-valid p-mr-1" formControlName="apellido">
                     <!-- Requerido -->
                     <div *ngIf="form.controls['apellido'].errors && form.controls['apellido'].dirty">
@@ -39,7 +40,10 @@
                             *ngIf="form.controls['apellido'].errors['required']"></p-message>
                         <!-- MIN y MAX de caracteres -->
                         <p-message severity="error" text="El minimo es de 2 a 15 caracteres"
-                            *ngIf="form.controls['apellido'].errors['minLength'] && form.controls['maxLength'].errors['maxLength']">
+                            *ngIf="form.controls['apellido'].errors['minlength']">
+                        </p-message>
+                        <p-message severity="error" text="El minimo es de 2 a 15 caracteres"
+                            *ngIf="form.controls['apellido'].errors['maxlength']">
                         </p-message>
                     </div>
                     <div *ngIf="!form.controls['apellido'].errors && form.controls['apellido'].dirty">
@@ -50,15 +54,17 @@
                 <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Nombre</label>
                     <br>
-                    <input type="text" pTooltip="Ingrese el Nombre" pInputText pKeyFilter="alpha" minlength="2"
-                        maxlength="15" pInputText placeholder="Juan Alberto" required formControlName="nombre">
+                    <input type="text" pTooltip="Ingrese el Nombre" pInputText pKeyFilter="alpha" pInputText placeholder="Juan Alberto" required formControlName="nombre">
                     <!-- Requerido -->
                     <div *ngIf="form.controls['nombre'].errors && form.controls['nombre'].dirty">
                         <p-message severity="error" text="El nombre es obligatorio"
                             *ngIf="form.controls['nombre'].errors['required']"></p-message>
                         <!-- MIN y MAX de caracteres -->
                         <p-message severity="error" text="El minimo es de 2 a 15 caracteres"
-                            *ngIf="form.controls['nombre'].errors['minLength'] && form.controls['nombre'].errors['maxLength']">
+                            *ngIf="form.controls['nombre'].errors['minlength']">
+                        </p-message>
+                        <p-message severity="error" text="El minimo es de 2 a 15 caracteres"
+                            *ngIf="form.controls['nombre'].errors['maxlength']">
                         </p-message>
                     </div>
                     <div *ngIf="!form.controls['nombre'].errors && form.controls['nombre'].dirty">
@@ -89,8 +95,11 @@
 
                     <div *ngIf="form.controls['celular'].errors && form.controls['celular'].dirty">
                         <!-- MIN y MAX de caracteres -->
-                        <p-message severity="error" text="El minimo es de 10 y 11 caracteres"
-                            *ngIf="form.controls['celular'].errors['minLength'] && form.controls['celular'].errors['maxLength']">
+                        <p-message severity="error" text="El minimo son 10 caracteres"
+                            *ngIf="form.controls['celular'].errors['minlength']">
+                        </p-message>
+                        <p-message severity="error" text="El maximo son 11 caracteres"
+                            *ngIf="form.controls['celular'].errors['maxlength']">
                         </p-message>
                     </div>
                     <div *ngIf="!form.controls['celular'].errors && form.controls['celular'].dirty">
@@ -104,8 +113,11 @@
                         maxlength="10" placeholder="(999) 999-9999" formControlName="telefono"></p-inputNumber>
                     <div *ngIf="form.controls['telefono'].errors && form.controls['telefono'].dirty">
                         <!-- MIN y MAX de caracteres -->
-                        <p-message severity="error" text="El minimo es de 10 y 11 caracteres"
-                            *ngIf="form.controls['telefono'].errors['minLength'] && form.controls['telefono'].errors['maxLength']">
+                        <p-message severity="error" text="El minimo son 10 caracteres"
+                            *ngIf="form.controls['telefono'].errors['minLength']">
+                        </p-message>
+                        <p-message severity="error" text="El maximo son 11 caracteres"
+                            *ngIf="form.controls['telefono'].errors['maxLength']">
                         </p-message>
                     </div>
                     <div *ngIf="!form.controls['telefono'].errors && form.controls['telefono'].dirty">
@@ -148,7 +160,8 @@
                 <div class="p-col-12 p-md-6 p-lg-3">
                     <label>Fecha de nacimiento</label><br>
                     <p-calendar pTooltip="Ingrese su fecha de nacimiento" [monthNavigator]="true" [yearNavigator]="true"
-                        yearRange="1921:2020" inputId="navigators" formControlName="fechaNacimiento" placeholder="01/01/2020"></p-calendar>
+                        yearRange="1921:2020" inputId="navigators" formControlName="fechaNacimiento"
+                        placeholder="01/01/2020"></p-calendar>
                     <div *ngIf="form.controls['fechaNacimiento'].errors && form.controls['fechaNacimiento'].dirty">
                         <p-message severity="error" text="La fecha Nacimiento es obligatoria"
                             *ngIf="form.controls['fechaNacimiento'].errors['required']"></p-message>
@@ -184,7 +197,7 @@
                         <p-message severity="error" text="El usuario es obligatorio"
                             *ngIf="form.controls['contrasenia'].errors['required']"></p-message>
                         <p-message severity="error"
-                            text="Tiene que tener la 1era en mayus, seguido de minus, y 2 nro al final"
+                            text="La 1er en mayuscula, seguido de minuscula, y 2 nro al final. Ej: Juan12"
                             *ngIf="form.controls['contrasenia'].errors['pattern']"></p-message>
                     </div>
                     <div *ngIf="!form.controls['contrasenia'].errors && form.controls['contrasenia'].dirty">
@@ -193,7 +206,6 @@
                 </div>
 
             </div>
-            <!-- </div> -->
         </form>
 
         <div class="p-col-10 p-offset-1" *ngIf="!mostrarPersona">

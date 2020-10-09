@@ -19,21 +19,14 @@ export class DatosCoberturaComponent implements OnInit {
 
 
 
-  constructor(private _mercantilService: MercantilService, private messageService: MessageService) {
+  constructor(private _mercantilService: MercantilService, private messageService: MessageService) {}
 
-  }
-
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
 
   onRowSelectCobertura(event){
-     console.log(event.data)
     this.messageService.add({ severity: 'success', summary: 'Cobertura Seleccionada', detail: event.data.titulo })
-    
     this.selectedCobertura.emit(event.data);
-    
   }
 
   onRowUnselectCobertura(event){

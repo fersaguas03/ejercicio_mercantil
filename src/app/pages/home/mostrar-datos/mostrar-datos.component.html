@@ -73,12 +73,12 @@
                         <th style="width:200px">Granizo </th>
                     </tr>
                     <tr>
-                        <td>{{ this.coberturaSelect.titulo }}</td>
-                        <td>{{ this.coberturaSelect.costo | currency:'$'}}</td>
-                        <td>{{ this.coberturaSelect.texto }}</td>
-                        <td>{{ this.coberturaSelect.franquicia  | currency:'$'}}</td>
-                        <td>{{ this.coberturaSelect.descripcion }}</td>
-                        <td>{{ this.coberturaSelect.granizo | pipeGranizo}}</td>
+                        <td>{{ coberturaSelect.titulo }}</td>
+                        <td>{{ coberturaSelect.costo | currency:'$'}}</td>
+                        <td>{{ coberturaSelect.texto }}</td>
+                        <td>{{ coberturaSelect.franquicia  | currency:'$'}}</td>
+                        <td>{{ coberturaSelect.descripcion }}</td>
+                        <td>{{ coberturaSelect.granizo | pipeGranizo}}</td>
                     </tr>
                 </ng-template>
 
@@ -93,8 +93,6 @@
     </p-dialog>
 </div>
 
-
-<!-- <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
 <p-dialog header="Éxito!" [(visible)]="displayModalGuardado" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <h2 class="p-text-center"><strong>¡SE GUARDARON LOS DATOS CORRECTAMENTE!</strong></h2>
         <ng-template pTemplate="footer">
@@ -103,6 +101,4 @@
 </p-dialog>
 
 
-<div *ngIf="!muestroModal">
-    <!--  -->
-</div>
+<!-- <div *ngIf="!muestroModal"></div> -->

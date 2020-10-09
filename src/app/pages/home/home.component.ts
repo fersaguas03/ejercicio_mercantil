@@ -33,11 +33,8 @@ export class HomeComponent implements OnInit {
   coberturaSelect: Cobertura;
   datosPersonaOtroComponente: DatosPersonas;
   datosVehiculoOtroComponente: DatosVehiculo;
-  // datosPersonales: DatosPersonales;
-  // datosVehiculo: DatosVehiculo;
   confirmaPersona = true;
   confirmaVehiculo = true;
-
   usuarioOutput: string = '';
 
   @ViewChild(DatosVehiculoComponent) datosVehiculoComponent: DatosVehiculoComponent;
@@ -46,8 +43,6 @@ export class HomeComponent implements OnInit {
   constructor(public _mercantilService: MercantilService, private rutaActiva: ActivatedRoute) {}
 
   ngOnInit(): void {
-
-
       this.municipios = [];
       this.provincias = [];
       this.marcas = [];
@@ -55,7 +50,6 @@ export class HomeComponent implements OnInit {
       this.getMarcasService();
       this._mercantilService.getCoberturas().then((data: any) => {
       this.coberturas = data;
-
       });
   
   }
@@ -71,10 +65,8 @@ export class HomeComponent implements OnInit {
   getProvinciaService() {
     this._mercantilService.getProvincias().subscribe((res: any) => {
       this.provincias = res.provincias;
-      // console.log(this.provincias);
     })
   }
-
 
   ////////////// AUTOCOMPLETE MUNICIPIO //////////////
   // Seleccion con click para la provincia
@@ -82,22 +74,15 @@ export class HomeComponent implements OnInit {
 
     this._mercantilService.getMunicipio(nombre).subscribe((res: any) => {
       this.municipios = res.municipios;
-      // console.log("output:" , this.municipios);
-
     })
   }
   ////////////// FIN AUTOCOMPLETE MUNICIPIO //////////////
 
 
   usuarioDisponible(usuario) {
-
     this._mercantilService.getUsuario(usuario).subscribe((res: any) => {
       this.usuario = res;
-      // console.log("llegue al servicio:", this.usuario);
-
-
     })
-
   }
 
   //////MARCAS//////
@@ -107,22 +92,18 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  ////////MODELOS/////
+  ////////MODELOS///////
   selectedCodMarcas(datos) {
     // alert("datosMarca"+datos.marca)
     this._mercantilService.getModelos(datos.marca, datos.anio).subscribe((res: any) => {
       this.modelos = res;
       this.datosVehiculoComponent.obtenerModelo(this.modelos);
-      // console.log("Modelo encontrado: " , this.modelos);
     })
   }
 
   /////VERSIONES VER//////
   seleccionModeloEmitidos(datos) {
-    // alert("marca "+datos.marca + "anio:"+ datos.anio + "modelo:"+ datos.mod)
     this._mercantilService.getVersiones(datos.marca, datos.anio, datos.mod).subscribe((res: any) => {
-      // console.log(res);
-
       this.versiones = res;
       this.datosVehiculoComponent.obtenerVersion(this.versiones);
 
@@ -133,21 +114,15 @@ export class HomeComponent implements OnInit {
   //// COBERTURAS
   selectCobertura(event) {
     this.coberturaSelect = event;
-    // console.log("selecciono cobertura home ", this.coberturaSelect);
-
   }
 
   datosPersonaHijos( dato ) {
-    // console.log("datoPadre", dato);
     this.datosPersonaOtroComponente = dato;
   }
 
   datosVehiculoHijos( dato ){
-    console.log("datoPadreVehiculo", dato);
     this.datosVehiculoOtroComponente = dato;
-    
   }
-
 
 }
 

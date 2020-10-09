@@ -56,11 +56,9 @@ import { RippleModule } from 'primeng/ripple';
     DatosPersonaComponent,
     DatosVehiculoComponent,
     DatosCoberturaComponent,
-
+    MostrarDatosComponent,
     //Pipes
     GranizoPipe,
-
-    MostrarDatosComponent
   ],
   imports: [
     BrowserModule,

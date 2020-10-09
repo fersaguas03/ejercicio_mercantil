@@ -32,7 +32,6 @@ export class DatosVehiculoComponent implements OnInit {
 
   selectedMarca: Marca = { desc: '', codigo: '' };
   filteredMarcas: any[];
-  // selectedModelos: Modelo[];
   filteredModelos: any[];
 
   anioModelo: string;
@@ -41,19 +40,19 @@ export class DatosVehiculoComponent implements OnInit {
   versionOptions: any[] = [];
   modelo: string;
 
-  mostrarVehiculo:boolean = true;
-  form:FormGroup;
+  mostrarVehiculo: boolean = true;
+  form: FormGroup;
 
   labelSiguiente: string = "Siguiente";
   iconSE: string = "pi pi-arrow-right";
 
-  constructor( private fb: FormBuilder ) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.marcas = [];
     this.anios = [];
     for (let i = 2000; i < 2021; i++) {
-        this.anios.push({label: i, value:i});
+      this.anios.push({ label: i, value: i });
     }
 
     this.form = this.fb.group({
@@ -63,13 +62,8 @@ export class DatosVehiculoComponent implements OnInit {
       'version': new FormControl('', Validators.required)
     });
 
-    // this.form.setValue({ 
-
-    // })
-
   }
 
-  //////// AUTOCOMPLETE MARCA ////////////
   filterMarca(event) {
     let filtered: any[] = [];
     let query = event.query;
@@ -80,67 +74,55 @@ export class DatosVehiculoComponent implements OnInit {
       }
     }
     this.filteredMarcas = filtered;
-    console.log(this.filteredMarcas);
-
   }
 
   clickSelectedMarca(cod: string) {
     this.marcaSeleccionada = cod;
-    // alert(this.marcaSeleccionada)
-    if( this.anioSeleccionado !== undefined ){
-      this.selectedCodMarca.emit({marca: this.marcaSeleccionada, anio: this.anioSeleccionado});
+    if (this.anioSeleccionado !== undefined) {
+      this.selectedCodMarca.emit({ marca: this.marcaSeleccionada, anio: this.anioSeleccionado });
     }
   }
 
-  clickSelectedAnio( anio: number){
+  clickSelectedAnio(anio: number) {
     this.anioSeleccionado = anio.toString();
 
-    if( this.marcaSeleccionada !== undefined ){
-      this.selectedCodMarca.emit({marca: this.marcaSeleccionada, anio: this.anioSeleccionado});
+    if (this.marcaSeleccionada !== undefined) {
+      this.selectedCodMarca.emit({ marca: this.marcaSeleccionada, anio: this.anioSeleccionado });
+    }
+  }
+
+  clickSelectedModelo(mod: string) {
+    this.seleccionModelos = mod;
+    if (this.anioSeleccionado !== undefined && this.marcaSeleccionada !== undefined) {
+      this.seleccionModeloEmitido.emit({ marca: this.marcaSeleccionada, anio: this.anioSeleccionado, mod: this.seleccionModelos });
     }
   }
 
 
-  //MODELO
-  clickSelectedModelo( mod: string ){
-     this.seleccionModelos = mod;
-    if( this.anioSeleccionado !== undefined && this.marcaSeleccionada !== undefined ){
-      this.seleccionModeloEmitido.emit( {marca: this.marcaSeleccionada, anio: this.anioSeleccionado, mod:this.seleccionModelos} );
-    }
-  }
-
-
-  obtenerModelo( modelos ){
-    // console.log(modelos);
+  obtenerModelo(modelos) {
     for (let i = 0; i < modelos.length; i++) {
-      this.modelosOptions.push({ label: modelos[i], value: modelos[i]});
+      this.modelosOptions.push({ label: modelos[i], value: modelos[i] });
     }
   }
 
 
-  obtenerVersion( versiones ){
-    // console.log(versiones);
-
+  obtenerVersion(versiones) {
     versiones.forEach(element => {
-      this.versionOptions.push({ label : element.desc, value: element.codigo })
+      this.versionOptions.push({ label: element.desc, value: element.codigo })
     });
   }
 
-  guardarDatosVehiculo(){
+  guardarDatosVehiculo() {
     this.mostrarVehiculo = !this.mostrarVehiculo;
-    console.log(this.form.value);
-    // console.log(this.form);
     this.datosVehiculoHijo.emit(this.form.value);
 
-    if( this.mostrarVehiculo == true){
+    if (this.mostrarVehiculo == true) {
       this.labelSiguiente = "Siguiente"
       this.iconSE = "pi pi-arrow-right"
     }
-    else{
+    else {
       this.labelSiguiente = "Editar"
       this.iconSE = "pi pi-pencil"
     }
-
-
   }
 }
